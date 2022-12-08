@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+struct CategoriesViewModel {
+    private let categoriesData = CategoriesData()
+    
+    lazy var categories: [ItemCategory] = {
+        return categoriesData.categories
+    }()
+    
+    var selectedCategory: Int = 0
+}
+

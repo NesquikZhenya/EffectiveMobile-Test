@@ -10,13 +10,16 @@ import Foundation
 struct ItemCategory {
     let name: String
     let imageName: String
+    var isSelected: Bool
 }
 
-let categories = [
-    ItemCategory(name: "Phones", imageName: "phone"),
-    ItemCategory(name: "Computers", imageName: "computer"),
-    ItemCategory(name: "Health", imageName: "health"),
-    ItemCategory(name: "Books", imageName: "book"),
-    ItemCategory(name: "Tablets", imageName: "tablet"),
-    ItemCategory(name: "TVs", imageName: "tv")
-]
+struct CategoriesData {
+    let categories: [ItemCategory] = [
+        ItemCategory(name: "Phones", imageName: "phone", isSelected: true),
+        ItemCategory(name: "Computers", imageName: "computer", isSelected: false),
+        ItemCategory(name: "Health", imageName: "health", isSelected: false),
+        ItemCategory(name: "Books", imageName: "book", isSelected: false),
+        ItemCategory(name: "Tablets", imageName: "tablet", isSelected: false),
+        ItemCategory(name: "TVs", imageName: "tv", isSelected: false)
+    ]
+}

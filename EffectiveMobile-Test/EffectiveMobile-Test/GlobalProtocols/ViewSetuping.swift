@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+protocol ViewSetuping {
+    func loadViews()
+    func setupConstraints()
+}

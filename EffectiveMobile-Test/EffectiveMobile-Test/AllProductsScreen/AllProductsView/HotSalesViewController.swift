@@ -9,21 +9,46 @@ import UIKit
 
 class HotSalesViewController: UIViewController {
 
+    let hotSalesView = HotSalesView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view = hotSalesView
+        hotSalesView.hotSalesCollectionView.dataSource = self
+        hotSalesView.hotSalesCollectionView.delegate = self
+        hotSalesView.hotSalesCollectionView.register(HotSalesCollectionViewCell.self, forCellWithReuseIdentifier: "HotSalesCollectionViewCell")
+    }
 
-        // Do any additional setup after loading the view.
+}
+
+extension HotSalesViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = hotSalesView.hotSalesCollectionView.dequeueReusableCell(withReuseIdentifier: "HotSalesCollectionViewCell", for: indexPath) as? HotSalesCollectionViewCell {
+            return cell
+        }
+        else {
+            return UICollectionViewCell()
+        }
     }
-    */
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width - 32, height: 180)
+//        return CGSize(width: 200, height: collectionView.frame.height)
 
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 32
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+    }
+    
+    
 }
