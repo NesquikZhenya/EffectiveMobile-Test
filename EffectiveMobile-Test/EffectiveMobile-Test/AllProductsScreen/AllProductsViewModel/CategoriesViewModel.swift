@@ -1,0 +1,8 @@
+//
+//  CategoriesViewModel.swift
+//  EffectiveMobile-Test
+//
+//  Created by Евгений Михневич on 07.12.2022.
+//
+
+import Foundation
