@@ -18,7 +18,7 @@ class AllProductsViewController: UIViewController {
         allProductsView.categoriesCollectionView.dataSource = self
         allProductsView.categoriesCollectionView.delegate = self
         allProductsView.categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "CategoriesCollectionViewCell")
-        allProductsView.initializeHotSalesView2(hotSalesPhones: [HotSalesPhone(id: 1), HotSalesPhone(id: 2), HotSalesPhone(id: 3)])
+        allProductsView.initializeHotSalesView2(hotSalesPhones: [HotSalesPhone(id: 1), HotSalesPhone(id: 2), HotSalesPhone(id: 3), HotSalesPhone(id: 4)])
     }
     
 }

@@ -95,50 +95,51 @@ extension HotSalesView: ViewSetuping {
 }
 
 extension HotSalesView {
+    
     func configureHotSalesScrollView(hotSalesPhones:[HotSalesPhone]) {
         
-        let view1 = HotSalesPhoneView()
-        view1.configureHotSalesPhone()
-        hotSalesScrollView.addSubview(view1)
-        [
-            view1.topAnchor.constraint(equalTo: hotSalesScrollView.topAnchor),
-            view1.bottomAnchor.constraint(equalTo: hotSalesScrollView.bottomAnchor),
-            view1.leadingAnchor.constraint(equalTo: hotSalesScrollView.leadingAnchor),
-//            view1.trailingAnchor.constraint(equalTo: hotSalesScrollView.trailingAnchor),
-            view1.heightAnchor.constraint(equalTo: hotSalesScrollView.heightAnchor),
-            view1.widthAnchor.constraint(equalTo: hotSalesScrollView.widthAnchor)
-        ].forEach { $0.isActive = true }
-        view1.translatesAutoresizingMaskIntoConstraints = false
+        var phoneViews: [HotSalesPhoneView] = []
+        for _ in hotSalesPhones {
+            let view = HotSalesPhoneView()
+            view.configureHotSalesPhone()
+            phoneViews.append(view)
+        }
         
-        let view2 = HotSalesPhoneView()
-        view2.configureHotSalesPhone()
-        hotSalesScrollView.addSubview(view2)
-        [
-            view2.topAnchor.constraint(equalTo: hotSalesScrollView.topAnchor),
-            view2.bottomAnchor.constraint(equalTo: hotSalesScrollView.bottomAnchor),
-            view2.leadingAnchor.constraint(equalTo: view1.trailingAnchor),
-            view2.trailingAnchor.constraint(equalTo: hotSalesScrollView.trailingAnchor),
-            view2.heightAnchor.constraint(equalTo: hotSalesScrollView.heightAnchor),
-            view2.widthAnchor.constraint(equalTo: hotSalesScrollView.widthAnchor)
-        ].forEach { $0.isActive = true }
-        view2.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-//        for phone in hotSalesPhones {
-//            let view = HotSalesPhoneView()
-//            view.configureHotSalesPhone()
-//            hotSalesScrollView.addSubview(view)
-////            let xCoordinate = hotSalesScrollView.frame.midX + hotSalesScrollView.frame.width * CGFloat((phone.id - 1))
-////            view.frame = CGRect(x: xCoordinate, y: hotSalesScrollView.frame.height / 2, width: UIScreen.main.bounds.width - 32, height: hotSalesScrollView.bounds.height)
-//            [
-//                view.topAnchor.constraint(equalTo: hotSalesScrollView.topAnchor),
-//                view.bottomAnchor.constraint(equalTo: hotSalesScrollView.bottomAnchor),
-//                view.leadingAnchor.constraint(equalTo: hotSalesScrollView.leadingAnchor),
-//                view.trailingAnchor.constraint(equalTo: hotSalesScrollView.trailingAnchor, constant: 500),
-////                view.centerXAnchor.constraint(equalTo: hotSalesScrollView.centerXAnchor, constant: UIScreen.main.bounds.width * CGFloat((phone.id - 1)))
-//            ].forEach { $0.isActive = true }
-//            view.translatesAutoresizingMaskIntoConstraints = false
-//        }
+        for i in 0...(phoneViews.count - 1) {
+            
+            hotSalesScrollView.addSubview(phoneViews[i])
+            
+            if i == 0 {
+                [
+                    phoneViews[i].topAnchor.constraint(equalTo: hotSalesScrollView.topAnchor),
+                    phoneViews[i].bottomAnchor.constraint(equalTo: hotSalesScrollView.bottomAnchor),
+                    phoneViews[i].leadingAnchor.constraint(equalTo: hotSalesScrollView.leadingAnchor),
+                    phoneViews[i].heightAnchor.constraint(equalTo: hotSalesScrollView.heightAnchor),
+                    phoneViews[i].widthAnchor.constraint(equalTo: hotSalesScrollView.widthAnchor)
+                ].forEach { $0.isActive = true }
+                phoneViews[i].translatesAutoresizingMaskIntoConstraints = false
+            } else if i == (phoneViews.count - 1) {
+                [
+                    phoneViews[i].topAnchor.constraint(equalTo: hotSalesScrollView.topAnchor),
+                    phoneViews[i].bottomAnchor.constraint(equalTo: hotSalesScrollView.bottomAnchor),
+                    phoneViews[i].leadingAnchor.constraint(equalTo: phoneViews[i-1].trailingAnchor),
+                    phoneViews[i].trailingAnchor.constraint(equalTo: hotSalesScrollView.trailingAnchor),
+                    phoneViews[i].heightAnchor.constraint(equalTo: hotSalesScrollView.heightAnchor),
+                    phoneViews[i].widthAnchor.constraint(equalTo: hotSalesScrollView.widthAnchor)
+                ].forEach { $0.isActive = true }
+                phoneViews[i].translatesAutoresizingMaskIntoConstraints = false
+            } else {
+                [
+                    phoneViews[i].topAnchor.constraint(equalTo: hotSalesScrollView.topAnchor),
+                    phoneViews[i].bottomAnchor.constraint(equalTo: hotSalesScrollView.bottomAnchor),
+                    phoneViews[i].leadingAnchor.constraint(equalTo: phoneViews[i-1].trailingAnchor),
+                    phoneViews[i].heightAnchor.constraint(equalTo: hotSalesScrollView.heightAnchor),
+                    phoneViews[i].widthAnchor.constraint(equalTo: hotSalesScrollView.widthAnchor)
+                ].forEach { $0.isActive = true }
+                phoneViews[i].translatesAutoresizingMaskIntoConstraints = false
+            }
+    
+        }
     }
 }
 
