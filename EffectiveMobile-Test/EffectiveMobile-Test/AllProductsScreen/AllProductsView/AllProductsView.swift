@@ -80,6 +80,12 @@ class AllProductsView: UIView {
         return stackView
     }()
     
+    private let hotSalesView: HotSalesView = {
+        let view = HotSalesView()
+        return view
+    }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor(red: 0.971, green: 0.971, blue: 0.971, alpha: 1)
@@ -106,7 +112,8 @@ extension AllProductsView: ViewSetuping {
             selectCategoryLabel,
             viewAllLabel,
             categoriesCollectionView,
-            searchStackView
+            searchStackView,
+            hotSalesView
         ].forEach {self.addSubview($0)}
     }
     
@@ -119,6 +126,7 @@ extension AllProductsView: ViewSetuping {
         configureViewAllLabelConstraints()
         configureCategoriesCollectionViewConstraints()
         configureSearchStackViewConstraints()
+        configureHotSalesViewConstraints()
         
         [
             geolocationImageView,
@@ -128,7 +136,8 @@ extension AllProductsView: ViewSetuping {
             selectCategoryLabel,
             viewAllLabel,
             categoriesCollectionView,
-            searchStackView
+            searchStackView,
+            hotSalesView
         ].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
     }
     
@@ -194,7 +203,18 @@ extension AllProductsView: ViewSetuping {
         ].forEach { $0.isActive = true }
     }
     
+    private func configureHotSalesViewConstraints() {
+        [
+            hotSalesView.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 24),
+            hotSalesView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            hotSalesView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            hotSalesView.heightAnchor.constraint(equalToConstant: 180)
+        ].forEach { $0.isActive = true }
+    }
+    
 }
+
+//MARK: Adding HotSalesView
 
 extension AllProductsView {
     func initializeHotSalesView(hotSalesView: UIView) {
@@ -206,5 +226,9 @@ extension AllProductsView {
         ].forEach { $0.isActive = true }
         hotSalesView.translatesAutoresizingMaskIntoConstraints = false
         self.layoutIfNeeded()
+    }
+    
+    func initializeHotSalesView2(hotSalesPhones: [HotSalesPhone]) {
+        hotSalesView.configureHotSalesScrollView(hotSalesPhones: hotSalesPhones)
     }
 }

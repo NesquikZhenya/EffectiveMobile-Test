@@ -11,7 +11,6 @@ class AllProductsViewController: UIViewController {
     
     var categoriesViewModel = CategoriesViewModel()
     let allProductsView = AllProductsView()
-    let hotSalesViewController = HotSalesViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +18,7 @@ class AllProductsViewController: UIViewController {
         allProductsView.categoriesCollectionView.dataSource = self
         allProductsView.categoriesCollectionView.delegate = self
         allProductsView.categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "CategoriesCollectionViewCell")
-        addHotSalesCollectionViewController()
+        allProductsView.initializeHotSalesView2(hotSalesPhones: [HotSalesPhone(id: 1), HotSalesPhone(id: 2), HotSalesPhone(id: 3)])
     }
     
 }
@@ -59,18 +58,6 @@ extension AllProductsViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 23, bottom: 0, right: 0)
-    }
-    
-}
-
-//MARK: Child VC Configuration
-
-extension AllProductsViewController {
-    
-    func addHotSalesCollectionViewController() {
-        addChild(hotSalesViewController)
-        allProductsView.initializeHotSalesView(hotSalesView: hotSalesViewController.view)
-        hotSalesViewController.didMove(toParent: self)
     }
     
 }

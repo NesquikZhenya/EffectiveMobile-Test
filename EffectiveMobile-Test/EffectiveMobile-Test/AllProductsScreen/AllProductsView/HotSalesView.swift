@@ -25,18 +25,16 @@ class HotSalesView: UIView {
         return label
     }()
     
-    lazy var hotSalesCollectionView: UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .horizontal
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.backgroundColor = UIColor(red: 0.971, green: 0.971, blue: 0.971, alpha: 1)
-        collectionView.showsHorizontalScrollIndicator = false
-        return collectionView
+    lazy var hotSalesScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isPagingEnabled = true
+        return scrollView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(red: 0.971, green: 0.971, blue: 0.971, alpha: 1)
         loadViews()
         setupConstraints()
     }
@@ -47,25 +45,27 @@ class HotSalesView: UIView {
 
 }
 
+//MARK: Configurating constraints
+
 extension HotSalesView: ViewSetuping {
 
     func loadViews() {
         [
             hotSalesLabel,
             seeMoreLabel,
-            hotSalesCollectionView
+            hotSalesScrollView
         ].forEach {self.addSubview($0)}
     }
     
     func setupConstraints() {
         configureHotSalesLabelConstraints()
         configureSeeMoreLabelConstraints()
-        configureHotSalesCollectionViewConstraints()
+        configureHotSalesScrollViewConstraints()
         
         [
             hotSalesLabel,
             seeMoreLabel,
-            hotSalesCollectionView
+            hotSalesScrollView
         ].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
     }
     
@@ -83,15 +83,62 @@ extension HotSalesView: ViewSetuping {
         ].forEach { $0.isActive = true }
     }
     
-    
-    private func configureHotSalesCollectionViewConstraints() {
+    private func configureHotSalesScrollViewConstraints() {
         [
-            hotSalesCollectionView.topAnchor.constraint(equalTo: hotSalesLabel.bottomAnchor, constant: 8),
-            hotSalesCollectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            hotSalesCollectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            hotSalesCollectionView.heightAnchor.constraint(equalToConstant: 180)
+            hotSalesScrollView.topAnchor.constraint(equalTo: hotSalesLabel.bottomAnchor, constant: 8),
+            hotSalesScrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            hotSalesScrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            hotSalesScrollView.heightAnchor.constraint(equalToConstant: 180)
         ].forEach { $0.isActive = true }
     }
     
+}
+
+extension HotSalesView {
+    func configureHotSalesScrollView(hotSalesPhones:[HotSalesPhone]) {
+        
+        let view1 = HotSalesPhoneView()
+        view1.configureHotSalesPhone()
+        hotSalesScrollView.addSubview(view1)
+        [
+            view1.topAnchor.constraint(equalTo: hotSalesScrollView.topAnchor),
+            view1.bottomAnchor.constraint(equalTo: hotSalesScrollView.bottomAnchor),
+            view1.leadingAnchor.constraint(equalTo: hotSalesScrollView.leadingAnchor),
+//            view1.trailingAnchor.constraint(equalTo: hotSalesScrollView.trailingAnchor),
+            view1.heightAnchor.constraint(equalTo: hotSalesScrollView.heightAnchor),
+            view1.widthAnchor.constraint(equalTo: hotSalesScrollView.widthAnchor)
+        ].forEach { $0.isActive = true }
+        view1.translatesAutoresizingMaskIntoConstraints = false
+        
+        let view2 = HotSalesPhoneView()
+        view2.configureHotSalesPhone()
+        hotSalesScrollView.addSubview(view2)
+        [
+            view2.topAnchor.constraint(equalTo: hotSalesScrollView.topAnchor),
+            view2.bottomAnchor.constraint(equalTo: hotSalesScrollView.bottomAnchor),
+            view2.leadingAnchor.constraint(equalTo: view1.trailingAnchor),
+            view2.trailingAnchor.constraint(equalTo: hotSalesScrollView.trailingAnchor),
+            view2.heightAnchor.constraint(equalTo: hotSalesScrollView.heightAnchor),
+            view2.widthAnchor.constraint(equalTo: hotSalesScrollView.widthAnchor)
+        ].forEach { $0.isActive = true }
+        view2.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+//        for phone in hotSalesPhones {
+//            let view = HotSalesPhoneView()
+//            view.configureHotSalesPhone()
+//            hotSalesScrollView.addSubview(view)
+////            let xCoordinate = hotSalesScrollView.frame.midX + hotSalesScrollView.frame.width * CGFloat((phone.id - 1))
+////            view.frame = CGRect(x: xCoordinate, y: hotSalesScrollView.frame.height / 2, width: UIScreen.main.bounds.width - 32, height: hotSalesScrollView.bounds.height)
+//            [
+//                view.topAnchor.constraint(equalTo: hotSalesScrollView.topAnchor),
+//                view.bottomAnchor.constraint(equalTo: hotSalesScrollView.bottomAnchor),
+//                view.leadingAnchor.constraint(equalTo: hotSalesScrollView.leadingAnchor),
+//                view.trailingAnchor.constraint(equalTo: hotSalesScrollView.trailingAnchor, constant: 500),
+////                view.centerXAnchor.constraint(equalTo: hotSalesScrollView.centerXAnchor, constant: UIScreen.main.bounds.width * CGFloat((phone.id - 1)))
+//            ].forEach { $0.isActive = true }
+//            view.translatesAutoresizingMaskIntoConstraints = false
+//        }
+    }
 }
 

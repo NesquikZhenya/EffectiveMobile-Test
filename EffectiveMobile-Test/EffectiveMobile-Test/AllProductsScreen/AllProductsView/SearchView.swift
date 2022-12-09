@@ -37,6 +37,8 @@ class SearchView: UIView {
 
 }
 
+//MARK: Configurating constraints
+
 extension SearchView: ViewSetuping {
     
     func loadViews() {

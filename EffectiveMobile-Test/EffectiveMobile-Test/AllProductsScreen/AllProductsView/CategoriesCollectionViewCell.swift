@@ -53,6 +53,8 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     }
 }
 
+//MARK: Configurating constraints
+
 extension CategoriesCollectionViewCell: ViewSetuping {
     
     func loadViews() {
