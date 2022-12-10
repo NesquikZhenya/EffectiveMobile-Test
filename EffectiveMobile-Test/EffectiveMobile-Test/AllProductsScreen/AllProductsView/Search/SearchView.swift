@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchView: UIView {
+final class SearchView: UIView {
     
     private let searchImageView: UIImageView = {
         let imageView = UIImageView()

@@ -21,9 +21,10 @@
 		522B39FC2940B71F000983DE /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522B39FB2940B71F000983DE /* SearchView.swift */; };
 		527F43562943382700B743C3 /* HotSalesPhoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F43552943382700B743C3 /* HotSalesPhoneView.swift */; };
 		527F435829433FAF00B743C3 /* HotSalesPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F435729433FAF00B743C3 /* HotSalesPhone.swift */; };
+		527F435D2944D7FD00B743C3 /* AllProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F435C2944D7FD00B743C3 /* AllProductsViewModel.swift */; };
+		527F435F2944DB3B00B743C3 /* CategoriesDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527F435E2944DB3B00B743C3 /* CategoriesDataProvider.swift */; };
 		52F603882940DA91007D16D9 /* CategoriesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F603872940DA91007D16D9 /* CategoriesData.swift */; };
 		52F6038C2940E53B007D16D9 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F6038B2940E53B007D16D9 /* CategoriesCollectionViewCell.swift */; };
-		52F6038E2940F90E007D16D9 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F6038D2940F90E007D16D9 /* CategoriesViewModel.swift */; };
 		52F6039529421CCD007D16D9 /* ViewSetuping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F6039429421CCD007D16D9 /* ViewSetuping.swift */; };
 		52F6039B29422D40007D16D9 /* HotSalesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F6039A29422D40007D16D9 /* HotSalesView.swift */; };
 /* End PBXBuildFile section */
@@ -45,9 +46,10 @@
 		522B39FB2940B71F000983DE /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		527F43552943382700B743C3 /* HotSalesPhoneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotSalesPhoneView.swift; sourceTree = "<group>"; };
 		527F435729433FAF00B743C3 /* HotSalesPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotSalesPhone.swift; sourceTree = "<group>"; };
+		527F435C2944D7FD00B743C3 /* AllProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsViewModel.swift; sourceTree = "<group>"; };
+		527F435E2944DB3B00B743C3 /* CategoriesDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDataProvider.swift; sourceTree = "<group>"; };
 		52F603872940DA91007D16D9 /* CategoriesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesData.swift; sourceTree = "<group>"; };
 		52F6038B2940E53B007D16D9 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
-		52F6038D2940F90E007D16D9 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
 		52F6039429421CCD007D16D9 /* ViewSetuping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetuping.swift; sourceTree = "<group>"; };
 		52F6039A29422D40007D16D9 /* HotSalesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotSalesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				52F603872940DA91007D16D9 /* CategoriesData.swift */,
+				527F435E2944DB3B00B743C3 /* CategoriesDataProvider.swift */,
 			);
 			path = AllProductsModel;
 			sourceTree = "<group>";
@@ -156,8 +159,8 @@
 		522B39E5293E510A000983DE /* AllProductsViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				52F6038D2940F90E007D16D9 /* CategoriesViewModel.swift */,
 				527F435729433FAF00B743C3 /* HotSalesPhone.swift */,
+				527F435C2944D7FD00B743C3 /* AllProductsViewModel.swift */,
 			);
 			path = AllProductsViewModel;
 			sourceTree = "<group>";
@@ -167,10 +170,9 @@
 			children = (
 				522B39E8293E520B000983DE /* AllProductsViewController.swift */,
 				522B39EA293E521E000983DE /* AllProductsView.swift */,
-				52F6038B2940E53B007D16D9 /* CategoriesCollectionViewCell.swift */,
-				522B39FB2940B71F000983DE /* SearchView.swift */,
-				52F6039A29422D40007D16D9 /* HotSalesView.swift */,
-				527F43552943382700B743C3 /* HotSalesPhoneView.swift */,
+				527F43592944D78000B743C3 /* Categories */,
+				527F435B2944D7AC00B743C3 /* Search */,
+				527F435A2944D79300B743C3 /* HotSales */,
 			);
 			path = AllProductsView;
 			sourceTree = "<group>";
@@ -184,6 +186,31 @@
 				522B39F42940AF5E000983DE /* MarkPro-Regular.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		527F43592944D78000B743C3 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				52F6038B2940E53B007D16D9 /* CategoriesCollectionViewCell.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		527F435A2944D79300B743C3 /* HotSales */ = {
+			isa = PBXGroup;
+			children = (
+				52F6039A29422D40007D16D9 /* HotSalesView.swift */,
+				527F43552943382700B743C3 /* HotSalesPhoneView.swift */,
+			);
+			path = HotSales;
+			sourceTree = "<group>";
+		};
+		527F435B2944D7AC00B743C3 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				522B39FB2940B71F000983DE /* SearchView.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		52F6039129421C82007D16D9 /* GlobalProtocols */ = {
@@ -270,9 +297,10 @@
 			files = (
 				527F435829433FAF00B743C3 /* HotSalesPhone.swift in Sources */,
 				52F6038C2940E53B007D16D9 /* CategoriesCollectionViewCell.swift in Sources */,
+				527F435F2944DB3B00B743C3 /* CategoriesDataProvider.swift in Sources */,
 				522B39C8293CA356000983DE /* AppDelegate.swift in Sources */,
 				52F6039529421CCD007D16D9 /* ViewSetuping.swift in Sources */,
-				52F6038E2940F90E007D16D9 /* CategoriesViewModel.swift in Sources */,
+				527F435D2944D7FD00B743C3 /* AllProductsViewModel.swift in Sources */,
 				522B39EB293E521E000983DE /* AllProductsView.swift in Sources */,
 				522B39CA293CA356000983DE /* SceneDelegate.swift in Sources */,
 				522B39E9293E520B000983DE /* AllProductsViewController.swift in Sources */,

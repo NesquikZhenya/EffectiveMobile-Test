@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AllProductsView: UIView {
+final class AllProductsView: UIView {
 
     private let geolocationImageView: UIImageView = {
         let imageView = UIImageView()
@@ -66,14 +66,14 @@ class AllProductsView: UIView {
         return view
     }()
     
-    lazy var qrImageView: UIImageView = {
+    private lazy var qrImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "qr")
         imageView.widthAnchor.constraint(equalToConstant: 34).isActive = true
         return imageView
     }()
     
-    lazy var searchStackView: UIStackView = {
+    private lazy var searchStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [searchView, qrImageView])
         stackView.axis = .horizontal
         stackView.spacing = 11
@@ -217,18 +217,8 @@ extension AllProductsView: ViewSetuping {
 //MARK: Adding HotSalesView
 
 extension AllProductsView {
-    func initializeHotSalesView(hotSalesView: UIView) {
-        addSubview(hotSalesView)
-        [
-            hotSalesView.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 24),
-            hotSalesView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            hotSalesView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
-        ].forEach { $0.isActive = true }
-        hotSalesView.translatesAutoresizingMaskIntoConstraints = false
-        self.layoutIfNeeded()
-    }
     
-    func initializeHotSalesView2(hotSalesPhones: [HotSalesPhone]) {
+    func initializeHotSalesView(hotSalesPhones: [HotSalesPhone]) {
         hotSalesView.configureHotSalesScrollView(hotSalesPhones: hotSalesPhones)
     }
 }

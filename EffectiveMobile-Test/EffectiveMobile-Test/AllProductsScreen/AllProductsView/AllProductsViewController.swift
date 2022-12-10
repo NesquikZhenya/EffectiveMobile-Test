@@ -9,16 +9,30 @@ import UIKit
 
 class AllProductsViewController: UIViewController {
     
-    var categoriesViewModel = CategoriesViewModel()
+    private var allProductsViewModel: AllProductViewModel
+        
     let allProductsView = AllProductsView()
+    
+    init(allProductsViewModel: AllProductViewModel = AllProductViewModel()) {
+        self.allProductsViewModel = allProductsViewModel
+        super.init(nibName: .none, bundle: .none)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        view = allProductsView
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = allProductsView
+        allProductsViewModel.delegate = self 
         allProductsView.categoriesCollectionView.dataSource = self
         allProductsView.categoriesCollectionView.delegate = self
         allProductsView.categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "CategoriesCollectionViewCell")
-        allProductsView.initializeHotSalesView2(hotSalesPhones: [HotSalesPhone(id: 1), HotSalesPhone(id: 2), HotSalesPhone(id: 3), HotSalesPhone(id: 4)])
+        allProductsView.initializeHotSalesView(hotSalesPhones: [HotSalesPhone(id: 1), HotSalesPhone(id: 2), HotSalesPhone(id: 3), HotSalesPhone(id: 4)])
     }
     
 }
@@ -28,12 +42,12 @@ class AllProductsViewController: UIViewController {
 extension AllProductsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return allProductsViewModel.categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = allProductsView.categoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as? CategoriesCollectionViewCell {
-            cell.configureCategory(name: categoriesViewModel.categories[indexPath.row].name, imageName: categoriesViewModel.categories[indexPath.row].imageName, isSelected: categoriesViewModel.categories[indexPath.row].isSelected)
+            cell.configureCategory(name: allProductsViewModel.categories[indexPath.row].name, imageName: allProductsViewModel.categories[indexPath.row].imageName, isSelected: allProductsViewModel.categories[indexPath.row].isSelected)
             return cell
         }
         else {
@@ -42,9 +56,10 @@ extension AllProductsViewController: UICollectionViewDataSource, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        categoriesViewModel.categories[categoriesViewModel.selectedCategory].isSelected.toggle()
-        categoriesViewModel.categories[indexPath.row].isSelected.toggle()
-        categoriesViewModel.selectedCategory = indexPath.row
+        allProductsViewModel.categoryDidTap(newSelectedId: indexPath.row)
+//        allProductsViewModel.categories[allProductsViewModel.selectedCategoryId].isSelected.toggle()
+//        allProductsViewModel.categories[indexPath.row].isSelected.toggle()
+//        allProductsViewModel.selectedCategoryId = indexPath.row
         collectionView.reloadData()
     }
     

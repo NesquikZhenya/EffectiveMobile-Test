@@ -14,7 +14,8 @@ struct ItemCategory {
 }
 
 struct CategoriesData {
-    let categories: [ItemCategory] = [
+    
+    var categories: [ItemCategory] = [
         ItemCategory(name: "Phones", imageName: "phone", isSelected: true),
         ItemCategory(name: "Computers", imageName: "computer", isSelected: false),
         ItemCategory(name: "Health", imageName: "health", isSelected: false),
