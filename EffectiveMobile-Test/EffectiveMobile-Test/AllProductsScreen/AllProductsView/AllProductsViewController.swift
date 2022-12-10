@@ -32,7 +32,8 @@ class AllProductsViewController: UIViewController {
         allProductsView.categoriesCollectionView.dataSource = self
         allProductsView.categoriesCollectionView.delegate = self
         allProductsView.categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "CategoriesCollectionViewCell")
-        allProductsView.initializeHotSalesView(hotSalesPhones: [HotSalesPhone(id: 1), HotSalesPhone(id: 2), HotSalesPhone(id: 3), HotSalesPhone(id: 4)])
+        allProductsView.initializeHotSalesView(hotSalesPhones: allProductsViewModel.hotSalesPhones)
+//        allProductsView.initializeHotSalesView(hotSalesPhones: [HotSalesPhone(id: 1), HotSalesPhone(id: 2), HotSalesPhone(id: 3), HotSalesPhone(id: 4)])
     }
     
 }
@@ -57,9 +58,6 @@ extension AllProductsViewController: UICollectionViewDataSource, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         allProductsViewModel.categoryDidTap(newSelectedId: indexPath.row)
-//        allProductsViewModel.categories[allProductsViewModel.selectedCategoryId].isSelected.toggle()
-//        allProductsViewModel.categories[indexPath.row].isSelected.toggle()
-//        allProductsViewModel.selectedCategoryId = indexPath.row
         collectionView.reloadData()
     }
     

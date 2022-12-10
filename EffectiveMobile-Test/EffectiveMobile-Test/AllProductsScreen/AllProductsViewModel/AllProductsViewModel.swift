@@ -7,14 +7,18 @@
 
 import Foundation
 
-
-
 protocol CategoriesDataPresentable {
     
-    var selectedCategoryId: Int { get set}
-    var categories: [ItemCategory] {get set}
+    var selectedCategoryId: Int { get set }
+    var categories: [ItemCategory] { get set }
     
     func categoryDidTap(newSelectedId: Int )
+}
+
+protocol HotSalesDataPresentable {
+    
+    var hotSalesPhones: [HotSalesPhone] { get }
+    
 }
 
 final class AllProductViewModel {
@@ -22,9 +26,11 @@ final class AllProductViewModel {
     weak var delegate: AllProductsViewController?
     
     private var categoriesDataProvider: CategoriesDataProviding
+    private var hotSalesDataProvider: HotSalesDataProviding
     
-    init(categoriesDataProvider: CategoriesDataProviding = CategoriesDataProvider()) {
+    init(categoriesDataProvider: CategoriesDataProviding = CategoriesDataProvider(), hotSalesDataProvider: HotSalesDataProviding = HotSalesDataProvider()) {
         self.categoriesDataProvider = categoriesDataProvider
+        self.hotSalesDataProvider = hotSalesDataProvider
     }
     
 }
@@ -52,6 +58,14 @@ extension AllProductViewModel: CategoriesDataPresentable {
     func categoryDidTap(newSelectedId: Int) {
         categoriesDataProvider.categoryDidTap(newSelectedId: newSelectedId, oldSelectedId: selectedCategoryId)
         self.selectedCategoryId = newSelectedId
+    }
+    
+}
+
+extension AllProductViewModel: HotSalesDataPresentable {
+    
+    var hotSalesPhones: [HotSalesPhone] {
+        hotSalesDataProvider.getHotSalesPhones()
     }
     
 }

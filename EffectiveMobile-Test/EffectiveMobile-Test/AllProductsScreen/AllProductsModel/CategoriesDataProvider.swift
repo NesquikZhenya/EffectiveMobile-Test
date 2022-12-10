@@ -24,7 +24,7 @@ struct CategoriesDataProvider: CategoriesDataProviding {
     var selectedCategoryId: Int = .zero
     
     func getCategories() -> [ItemCategory] {
-        categoriesData.categories
+        return categoriesData.categories
     }
     
     mutating func setCategories(newCategories: [ItemCategory]) {
