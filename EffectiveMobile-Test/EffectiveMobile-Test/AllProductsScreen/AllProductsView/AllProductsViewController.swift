@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol AllProductsViewModelListening: AnyObject {
+    
+}
+
 class AllProductsViewController: UIViewController {
     
     private var allProductsViewModel: AllProductViewModel
@@ -33,8 +37,13 @@ class AllProductsViewController: UIViewController {
         allProductsView.categoriesCollectionView.delegate = self
         allProductsView.categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "CategoriesCollectionViewCell")
         allProductsView.initializeHotSalesView(hotSalesPhones: allProductsViewModel.hotSalesPhones)
-//        allProductsView.initializeHotSalesView(hotSalesPhones: [HotSalesPhone(id: 1), HotSalesPhone(id: 2), HotSalesPhone(id: 3), HotSalesPhone(id: 4)])
     }
+    
+}
+
+//MARK: delegate protocol conforming
+
+extension AllProductsViewController: AllProductsViewModelListening {
     
 }
 

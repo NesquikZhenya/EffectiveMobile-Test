@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CategoriesDataPresentable {
+protocol CategoriesDataPresentable: AnyObject {
     
     var selectedCategoryId: Int { get set }
     var categories: [ItemCategory] { get set }
@@ -15,7 +15,7 @@ protocol CategoriesDataPresentable {
     func categoryDidTap(newSelectedId: Int )
 }
 
-protocol HotSalesDataPresentable {
+protocol HotSalesDataPresentable: AnyObject {
     
     var hotSalesPhones: [HotSalesPhone] { get }
     
@@ -23,7 +23,7 @@ protocol HotSalesDataPresentable {
 
 final class AllProductViewModel {
     
-    weak var delegate: AllProductsViewController?
+    weak var delegate: AllProductsViewModelListening?
     
     private var categoriesDataProvider: CategoriesDataProviding
     private var hotSalesDataProvider: HotSalesDataProviding
