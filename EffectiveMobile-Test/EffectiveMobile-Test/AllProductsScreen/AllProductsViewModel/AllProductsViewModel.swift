@@ -17,15 +17,11 @@ protocol CategoriesDataPresentable: AnyObject {
 }
 
 protocol HotSalesDataPresentable: AnyObject {
-    
-    func getHotSalesPhones(completion: @escaping ([HotSalesPhone])->()?)
-    
+    func getHotSalesPhones()
 }
 
 protocol BestSellerDataPresentable: AnyObject {
-    
-    var bestSellerPhones: [BestSellerPhone] { get }
-    
+    func getBestSellerPhones()
 }
 
 final class AllProductsViewModel {
@@ -34,15 +30,12 @@ final class AllProductsViewModel {
     
     private var categoriesDataProvider: CategoriesDataProviding
     private var allProductsDataProvider: AllProductsDataProviding
-    
-    
+    private var hotSalesPhones: [HotSalesPhone] = []
+    private var bestSellerPhones: [BestSellerPhone] = []
+
     init(categoriesDataProvider: CategoriesDataProviding = CategoriesDataProvider(), allProductsDataProvider: AllProductsDataProviding = AllProductsDataProvider()) {
         self.categoriesDataProvider = categoriesDataProvider
         self.allProductsDataProvider = allProductsDataProvider
-    }
-    
-    var provideCompletion = { (hotSalesPhones: [HotSalesPhone]) in
-        
     }
     
 }
@@ -76,23 +69,32 @@ extension AllProductsViewModel: CategoriesDataPresentable {
 
 extension AllProductsViewModel: HotSalesDataPresentable {
     
-    func getHotSalesPhones(completion: @escaping ([HotSalesPhone]) -> ()?) {
+    func getHotSalesPhones() {
         let provideCompletion = { (hotSalesPhones: [HotSalesPhone]) in
-            completion(hotSalesPhones)
+            self.hotSalesPhones = hotSalesPhones
+            self.delegate?.initializeHotSalesView(hotSalesPhones: hotSalesPhones)
         }
-        
-        allProductsDataProvider.provideHotSalesPhonesData(provideCompletion: provideCompletion)
+        if self.hotSalesPhones.isEmpty == true {
+            allProductsDataProvider.provideHotSalesPhonesData(provideCompletion: provideCompletion)
+        } else {
+            self.delegate?.initializeHotSalesView(hotSalesPhones: hotSalesPhones)
+        }
     }
-    
-
     
 }
 
-//extension AllProductsViewModel: BestSellerDataPresentable {
-//    
-//    var bestSellerPhones: [BestSellerPhone] {
-//        allProductsDataProvider.getBestSellerPhonesData()
-//    }
-//    
-//}
+extension AllProductsViewModel: BestSellerDataPresentable {
+    
+    func getBestSellerPhones() {
+        let provideCompletion = { (bestSellerPhones: [BestSellerPhone]) in
+            self.bestSellerPhones = bestSellerPhones
+            self.delegate?.initializeBestSellerCollectionView(bestSellerPhones: bestSellerPhones)
+        }
+        if self.hotSalesPhones.isEmpty == true {
+            allProductsDataProvider.provideBestSellerPhonesData(provideCompletion: provideCompletion)
+        } else {
+            self.delegate?.initializeBestSellerCollectionView(bestSellerPhones: bestSellerPhones)
+        }
+    }
+}
 

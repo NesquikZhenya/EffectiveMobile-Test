@@ -11,6 +11,8 @@
 		522004A5299A7ADA000189DF /* AllProductsDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522004A4299A7ADA000189DF /* AllProductsDataFetcher.swift */; };
 		522004A7299A7D56000189DF /* AllProductsDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522004A6299A7D56000189DF /* AllProductsDataConverter.swift */; };
 		522004A9299A8288000189DF /* AllProductsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522004A8299A8288000189DF /* AllProductsDataProvider.swift */; };
+		522004AE299D1602000189DF /* BestSellerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522004AD299D1602000189DF /* BestSellerView.swift */; };
+		522004B0299D3EC4000189DF /* BestSellerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522004AF299D3EC4000189DF /* BestSellerCollectionViewCell.swift */; };
 		522B39C8293CA356000983DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522B39C7293CA356000983DE /* AppDelegate.swift */; };
 		522B39CA293CA356000983DE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522B39C9293CA356000983DE /* SceneDelegate.swift */; };
 		522B39D2293CA356000983DE /* EffectiveMobile_Test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 522B39D0293CA356000983DE /* EffectiveMobile_Test.xcdatamodeld */; };
@@ -37,6 +39,8 @@
 		522004A4299A7ADA000189DF /* AllProductsDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsDataFetcher.swift; sourceTree = "<group>"; };
 		522004A6299A7D56000189DF /* AllProductsDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsDataConverter.swift; sourceTree = "<group>"; };
 		522004A8299A8288000189DF /* AllProductsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsDataProvider.swift; sourceTree = "<group>"; };
+		522004AD299D1602000189DF /* BestSellerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerView.swift; sourceTree = "<group>"; };
+		522004AF299D3EC4000189DF /* BestSellerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BestSellerCollectionViewCell.swift; sourceTree = "<group>"; };
 		522B39C4293CA356000983DE /* EffectiveMobile-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EffectiveMobile-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		522B39C7293CA356000983DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		522B39C9293CA356000983DE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		522004AC299D15A6000189DF /* BestSeller */ = {
+			isa = PBXGroup;
+			children = (
+				522004AD299D1602000189DF /* BestSellerView.swift */,
+				522004AF299D3EC4000189DF /* BestSellerCollectionViewCell.swift */,
+			);
+			path = BestSeller;
+			sourceTree = "<group>";
+		};
 		522B39BB293CA356000983DE = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +195,7 @@
 				527F43592944D78000B743C3 /* Categories */,
 				527F435B2944D7AC00B743C3 /* Search */,
 				527F435A2944D79300B743C3 /* HotSales */,
+				522004AC299D15A6000189DF /* BestSeller */,
 			);
 			path = AllProductsView;
 			sourceTree = "<group>";
@@ -315,10 +329,12 @@
 				522B39E9293E520B000983DE /* AllProductsViewController.swift in Sources */,
 				522B39FC2940B71F000983DE /* SearchView.swift in Sources */,
 				522004A9299A8288000189DF /* AllProductsDataProvider.swift in Sources */,
+				522004AE299D1602000189DF /* BestSellerView.swift in Sources */,
 				522004A5299A7ADA000189DF /* AllProductsDataFetcher.swift in Sources */,
 				522B39D2293CA356000983DE /* EffectiveMobile_Test.xcdatamodeld in Sources */,
 				527F43562943382700B743C3 /* HotSalesPhoneView.swift in Sources */,
 				522004A7299A7D56000189DF /* AllProductsDataConverter.swift in Sources */,
+				522004B0299D3EC4000189DF /* BestSellerCollectionViewCell.swift in Sources */,
 				52F603882940DA91007D16D9 /* CategoriesData.swift in Sources */,
 				52F6039B29422D40007D16D9 /* HotSalesView.swift in Sources */,
 			);

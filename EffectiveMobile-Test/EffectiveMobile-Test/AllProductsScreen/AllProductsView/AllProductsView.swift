@@ -8,7 +8,7 @@
 import UIKit
 
 final class AllProductsView: UIView {
-
+    
     private let geolocationImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "geolocation")
@@ -88,6 +88,11 @@ final class AllProductsView: UIView {
         return view
     }()
     
+    private let bestSellerView: BestSellerView = {
+        let view = BestSellerView()
+        return view
+    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -116,7 +121,8 @@ extension AllProductsView: ViewSetuping {
             viewAllLabel,
             categoriesCollectionView,
             searchStackView,
-            hotSalesView
+            hotSalesView,
+            bestSellerView
         ].forEach {self.addSubview($0)}
     }
     
@@ -130,6 +136,7 @@ extension AllProductsView: ViewSetuping {
         configureCategoriesCollectionViewConstraints()
         configureSearchStackViewConstraints()
         configureHotSalesViewConstraints()
+        configureBestSellerViewConstraints()
         
         [
             geolocationImageView,
@@ -140,7 +147,8 @@ extension AllProductsView: ViewSetuping {
             viewAllLabel,
             categoriesCollectionView,
             searchStackView,
-            hotSalesView
+            hotSalesView,
+            bestSellerView
         ].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
     }
     
@@ -211,9 +219,20 @@ extension AllProductsView: ViewSetuping {
             hotSalesView.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 24),
             hotSalesView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             hotSalesView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            hotSalesView.heightAnchor.constraint(equalToConstant: 180)
+            hotSalesView.heightAnchor.constraint(equalToConstant: 226)
         ].forEach { $0.isActive = true }
     }
+    
+    private func configureBestSellerViewConstraints() {
+        [
+            bestSellerView.topAnchor.constraint(equalTo: hotSalesView.bottomAnchor, constant: 8),
+            bestSellerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            bestSellerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            bestSellerView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ].forEach { $0.isActive = true }
+    }
+    
+    
     
 }
 
@@ -224,4 +243,9 @@ extension AllProductsView {
     func initializeHotSalesView(hotSalesPhones: [HotSalesPhone]) {
         hotSalesView.configureHotSalesScrollView(hotSalesPhones: hotSalesPhones)
     }
+    
+    func initializeBestSellerView(bestSellerPhones: [BestSellerPhone]) {
+        bestSellerView.configureBestSellerCollectionView(bestSellerPhones: bestSellerPhones)
+    }
 }
+

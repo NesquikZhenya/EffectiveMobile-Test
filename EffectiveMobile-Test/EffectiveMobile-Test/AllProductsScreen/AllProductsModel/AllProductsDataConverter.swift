@@ -12,8 +12,6 @@ class AllProductsDataConverter {
     
     let allProductsDataFetcher = AllProductsDataFetcher()
     var allProductsData: AllProductsDataModel?
-//    var hotSalesPhones: [HotSalesPhone]?
-    var bestSellerPhones: [BestSellerPhone]?
         
     func convertHotSalesPhonesData(convertCompletion: @escaping ([HotSalesPhone]) -> ()?) {
         
@@ -29,21 +27,20 @@ class AllProductsDataConverter {
         allProductsDataFetcher.fetchAllProductsData(fetchCompletion: fetchCompletion)
     }
     
-//    func convertBestSellerPhonesData() -> [BestSellerPhone] {
-//
-//        var bestSellerPhones: [BestSellerPhone] = []
-//
-//        let completion = { [weak self] (allProduct:AllProductsDataModel?) in
-//            allProduct?.best_seller.forEach {
-//                let bestSellerPhone = BestSellerPhone(id: $0.id, isFavorites: $0.is_favorites, title: $0.title, priceWithoutDiscount: $0.price_without_discount, discountPrice: $0.discount_price, picture: UIImage(named:"qr")!)
-//                self?.bestSellerPhones?.append(bestSellerPhone)
-//            }
-//            return HotSalesPhone
-//        }
-//
-//        allProductsDataFetcher.fetchAllProductsData(completion: completion)
-//        return bestSellerPhones
-//
-//    }
+    func convertBestSellerPhonesData(convertCompletion: @escaping ([BestSellerPhone]) -> ()?) {
+        
+        var bestSellerPhones: [BestSellerPhone] = []
+        
+        let fetchCompletion = { (allProducts: AllProductsDataModel?) in
+            allProducts?.best_seller.forEach {
+                print($0.discount_price, $0.price_without_discount)
+                let bestSellerPhone = BestSellerPhone(id: $0.id, isFavorites: $0.is_favorites, title: $0.title, priceWithoutDiscount: $0.price_without_discount, discountPrice: $0.discount_price, picture: URL(string:$0.picture)!)
+                bestSellerPhones.append(bestSellerPhone)
+                
+            }
+            convertCompletion(bestSellerPhones)
+        }
+        allProductsDataFetcher.fetchAllProductsData(fetchCompletion: fetchCompletion)
+    }
 
 }

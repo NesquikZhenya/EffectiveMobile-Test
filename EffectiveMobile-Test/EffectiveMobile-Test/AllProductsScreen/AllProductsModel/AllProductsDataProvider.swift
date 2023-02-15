@@ -9,13 +9,12 @@ import Foundation
 
 protocol AllProductsDataProviding {
     func provideHotSalesPhonesData(provideCompletion: @escaping ([HotSalesPhone])->()?)
-//    func getBestSellerPhonesData() -> [BestSellerPhone]
+    func provideBestSellerPhonesData(provideCompletion: @escaping ([BestSellerPhone])->()?)
 }
 
 struct AllProductsDataProvider: AllProductsDataProviding { 
     
     let allProductsDataConverter = AllProductsDataConverter()
-    
     
     func provideHotSalesPhonesData(provideCompletion: @escaping ([HotSalesPhone]) -> ()?) {
         
@@ -24,9 +23,14 @@ struct AllProductsDataProvider: AllProductsDataProviding {
         }
         
         allProductsDataConverter.convertHotSalesPhonesData(convertCompletion: convertCompletion)
-            }
+    }
     
-//    func getBestSellerPhonesData() -> [BestSellerPhone] {
-////        return allProductsDataConverter.convertBestSellerPhonesData()
-//    }
+    func provideBestSellerPhonesData(provideCompletion: @escaping ([BestSellerPhone]) -> ()?) {
+        
+        let convertCompletion = { (bestSellerPhones: [BestSellerPhone]) in
+            provideCompletion(bestSellerPhones)
+        }
+        
+        allProductsDataConverter.convertBestSellerPhonesData(convertCompletion: convertCompletion)
+    }
 }

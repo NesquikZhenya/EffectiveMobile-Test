@@ -8,8 +8,11 @@
 import UIKit
 
 protocol AllProductsViewModelListening: AnyObject {
-    
+    func initializeHotSalesView(hotSalesPhones: [HotSalesPhone])
+    func initializeBestSellerCollectionView(bestSellerPhones: [BestSellerPhone])
+
 }
+
 
 class AllProductsViewController: UIViewController {
     
@@ -36,17 +39,12 @@ class AllProductsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        allProductsViewModel.delegate = self 
+        allProductsViewModel.delegate = self
         allProductsView.categoriesCollectionView.dataSource = self
         allProductsView.categoriesCollectionView.delegate = self
         allProductsView.categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "CategoriesCollectionViewCell")
-        let completion = { (hotSalesPhones: [HotSalesPhone]) in
-            DispatchQueue.main.async {
-                self.allProductsView.initializeHotSalesView(hotSalesPhones: hotSalesPhones)
-            }
-        }
-        allProductsViewModel.getHotSalesPhones(completion: completion)
-//        allProductsView.initializeHotSalesView(hotSalesPhones: allProductsViewModel.getHotSalesPhones(completion: completion))
+        allProductsViewModel.getHotSalesPhones()
+        allProductsViewModel.getBestSellerPhones()
     }
     
 }
@@ -54,6 +52,17 @@ class AllProductsViewController: UIViewController {
 //MARK: delegate protocol conforming
 
 extension AllProductsViewController: AllProductsViewModelListening {
+    
+    func initializeHotSalesView(hotSalesPhones: [HotSalesPhone]) {
+        DispatchQueue.main.async {
+            self.allProductsView.initializeHotSalesView(hotSalesPhones: hotSalesPhones)
+        }
+    }
+    func initializeBestSellerCollectionView(bestSellerPhones: [BestSellerPhone]) {
+        DispatchQueue.main.async {
+            self.allProductsView.initializeBestSellerView(bestSellerPhones: bestSellerPhones)
+        }
+    }
     
 }
 

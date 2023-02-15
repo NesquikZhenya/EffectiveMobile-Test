@@ -142,7 +142,8 @@ extension HotSalesPhoneView: ViewSetuping {
             buyNowButton.topAnchor.constraint(equalTo: phoneSubtitleLabel.bottomAnchor, constant: 26),
             buyNowButton.leadingAnchor.constraint(equalTo: phoneSubtitleLabel.leadingAnchor),
             buyNowButton.heightAnchor.constraint(equalToConstant: 23),
-            buyNowButton.widthAnchor.constraint(equalToConstant: 98)
+            buyNowButton.widthAnchor.constraint(equalToConstant: 98),
+            buyNowButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -26)
         ].forEach { $0.isActive = true }
     }
     
@@ -153,7 +154,7 @@ extension HotSalesPhoneView: ViewSetuping {
 extension HotSalesPhoneView {
     
     func configureHotSalesPhone(hotSalesPhone: HotSalesPhone) {
-        newTagView.isHidden = hotSalesPhone.isNew ?? false
+        newTagView.isHidden = !(hotSalesPhone.isNew ?? false)
         phoneNameLabel.text = hotSalesPhone.title
         phoneSubtitleLabel.text = hotSalesPhone.subtitle
         phoneImageView.downloaded(from: hotSalesPhone.picture)
