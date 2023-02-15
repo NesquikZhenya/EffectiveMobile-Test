@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CategoriesDataPresentable: AnyObject {
     
@@ -17,25 +18,36 @@ protocol CategoriesDataPresentable: AnyObject {
 
 protocol HotSalesDataPresentable: AnyObject {
     
-    var hotSalesPhones: [HotSalesPhone] { get }
+    func getHotSalesPhones(completion: @escaping ([HotSalesPhone])->()?)
     
 }
 
-final class AllProductViewModel {
+protocol BestSellerDataPresentable: AnyObject {
+    
+    var bestSellerPhones: [BestSellerPhone] { get }
+    
+}
+
+final class AllProductsViewModel {
     
     weak var delegate: AllProductsViewModelListening?
     
     private var categoriesDataProvider: CategoriesDataProviding
-    private var hotSalesDataProvider: HotSalesDataProviding
+    private var allProductsDataProvider: AllProductsDataProviding
     
-    init(categoriesDataProvider: CategoriesDataProviding = CategoriesDataProvider(), hotSalesDataProvider: HotSalesDataProviding = HotSalesDataProvider()) {
+    
+    init(categoriesDataProvider: CategoriesDataProviding = CategoriesDataProvider(), allProductsDataProvider: AllProductsDataProviding = AllProductsDataProvider()) {
         self.categoriesDataProvider = categoriesDataProvider
-        self.hotSalesDataProvider = hotSalesDataProvider
+        self.allProductsDataProvider = allProductsDataProvider
+    }
+    
+    var provideCompletion = { (hotSalesPhones: [HotSalesPhone]) in
+        
     }
     
 }
 
-extension AllProductViewModel: CategoriesDataPresentable {
+extension AllProductsViewModel: CategoriesDataPresentable {
     
     var selectedCategoryId: Int {
         get {
@@ -62,11 +74,25 @@ extension AllProductViewModel: CategoriesDataPresentable {
     
 }
 
-extension AllProductViewModel: HotSalesDataPresentable {
+extension AllProductsViewModel: HotSalesDataPresentable {
     
-    var hotSalesPhones: [HotSalesPhone] {
-        hotSalesDataProvider.getHotSalesPhones()
+    func getHotSalesPhones(completion: @escaping ([HotSalesPhone]) -> ()?) {
+        let provideCompletion = { (hotSalesPhones: [HotSalesPhone]) in
+            completion(hotSalesPhones)
+        }
+        
+        allProductsDataProvider.provideHotSalesPhonesData(provideCompletion: provideCompletion)
     }
     
+
+    
 }
+
+//extension AllProductsViewModel: BestSellerDataPresentable {
+//    
+//    var bestSellerPhones: [BestSellerPhone] {
+//        allProductsDataProvider.getBestSellerPhonesData()
+//    }
+//    
+//}
 

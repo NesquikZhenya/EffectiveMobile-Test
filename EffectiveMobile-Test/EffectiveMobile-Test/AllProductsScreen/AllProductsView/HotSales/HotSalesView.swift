@@ -14,6 +14,7 @@ class HotSalesView: UIView {
         label.text = "Hot Sales"
         label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
         label.font = UIFont(name: "MarkPro-Bold", size: 25)
+        label.font = label.font.withSize(25)
         return label
     }()
     
@@ -22,6 +23,7 @@ class HotSalesView: UIView {
         label.text = "see more"
         label.textColor = UIColor(red: 1, green: 0.429, blue: 0.304, alpha: 1)
         label.font = UIFont(name: "MarkPro-Regular", size: 15)
+        label.font = label.font.withSize(15)
         return label
     }()
     
@@ -88,7 +90,7 @@ extension HotSalesView: ViewSetuping {
             hotSalesScrollView.topAnchor.constraint(equalTo: hotSalesLabel.bottomAnchor, constant: 8),
             hotSalesScrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             hotSalesScrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            hotSalesScrollView.heightAnchor.constraint(equalToConstant: 180)
+            hotSalesScrollView.heightAnchor.constraint(equalToConstant: 190)
         ].forEach { $0.isActive = true }
     }
     
@@ -99,16 +101,16 @@ extension HotSalesView {
     func configureHotSalesScrollView(hotSalesPhones:[HotSalesPhone]) {
         
         var phoneViews: [HotSalesPhoneView] = []
-        for _ in hotSalesPhones {
+        for phone in hotSalesPhones {
             let view = HotSalesPhoneView()
-            view.configureHotSalesPhone()
+            view.configureHotSalesPhone(hotSalesPhone: phone)
             phoneViews.append(view)
         }
         
         for i in 0...(phoneViews.count - 1) {
-            
+
             hotSalesScrollView.addSubview(phoneViews[i])
-            
+
             if i == 0 {
                 [
                     phoneViews[i].topAnchor.constraint(equalTo: hotSalesScrollView.topAnchor),
@@ -138,7 +140,7 @@ extension HotSalesView {
                 ].forEach { $0.isActive = true }
                 phoneViews[i].translatesAutoresizingMaskIntoConstraints = false
             }
-    
+
         }
     }
 }

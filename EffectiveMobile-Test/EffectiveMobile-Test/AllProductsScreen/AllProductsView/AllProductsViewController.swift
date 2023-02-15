@@ -13,11 +13,15 @@ protocol AllProductsViewModelListening: AnyObject {
 
 class AllProductsViewController: UIViewController {
     
-    private var allProductsViewModel: AllProductViewModel
+    private var allProductsViewModel: AllProductsViewModel
         
     let allProductsView = AllProductsView()
     
-    init(allProductsViewModel: AllProductViewModel = AllProductViewModel()) {
+    func dodo(hotSalesPhones: [HotSalesPhone]) {
+        self.allProductsView.initializeHotSalesView(hotSalesPhones: hotSalesPhones)
+    }
+    
+    init(allProductsViewModel: AllProductsViewModel = AllProductsViewModel()) {
         self.allProductsViewModel = allProductsViewModel
         super.init(nibName: .none, bundle: .none)
     }
@@ -36,7 +40,13 @@ class AllProductsViewController: UIViewController {
         allProductsView.categoriesCollectionView.dataSource = self
         allProductsView.categoriesCollectionView.delegate = self
         allProductsView.categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "CategoriesCollectionViewCell")
-        allProductsView.initializeHotSalesView(hotSalesPhones: allProductsViewModel.hotSalesPhones)
+        let completion = { (hotSalesPhones: [HotSalesPhone]) in
+            DispatchQueue.main.async {
+                self.allProductsView.initializeHotSalesView(hotSalesPhones: hotSalesPhones)
+            }
+        }
+        allProductsViewModel.getHotSalesPhones(completion: completion)
+//        allProductsView.initializeHotSalesView(hotSalesPhones: allProductsViewModel.getHotSalesPhones(completion: completion))
     }
     
 }

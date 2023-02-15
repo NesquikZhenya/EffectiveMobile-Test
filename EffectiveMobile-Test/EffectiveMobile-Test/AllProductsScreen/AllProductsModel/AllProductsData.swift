@@ -6,3 +6,50 @@
 //
 
 import Foundation
+import UIKit
+
+struct HotSalesPhone {
+    let id: Int
+    let isNew: Bool?
+    let title: String
+    let subtitle: String
+    let picture: URL
+    let isBuy: Bool
+}
+
+struct BestSellerPhone {
+    let id: Int
+    let isFavorites: Bool
+    let title: String
+    let priceWithoutDiscount: Int
+    let discountPrice: Int
+    let picture: URL
+}
+
+struct HotSalesPhoneDataModel: Codable {
+    let id: Int
+    let is_new: Bool?
+    let title: String
+    let subtitle: String
+    let picture: String
+    let is_buy: Bool
+}
+
+struct BestSellerPhoneDataModel: Codable {
+    let id: Int
+    let is_favorites: Bool
+    let title: String
+    let price_without_discount: Int
+    let discount_price: Int
+    let picture: String
+}
+
+struct AllProductsDataModel: Codable {
+    let home_store: [HotSalesPhoneDataModel]
+    let best_seller: [BestSellerPhoneDataModel]
+}
+
+struct AllProductsData {
+    let hotSalesPhones: [HotSalesPhone]
+    let bestSellerPhone: [BestSellerPhone]
+}
