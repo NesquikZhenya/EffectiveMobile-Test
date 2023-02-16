@@ -7,7 +7,15 @@
 
 import UIKit
 
+protocol HotSalesViewHiding: AnyObject {
+    
+    var isNowHidden: Bool { get set }
+
+}
+
 class BestSellerView: UIView {
+    
+    weak var delegate: HotSalesViewHiding?
     
     private var bestSellerPhones: [BestSellerPhone] = []
     
@@ -119,7 +127,8 @@ extension BestSellerView: UICollectionViewDataSource, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = bestSellerCollectionView.dequeueReusableCell(withReuseIdentifier: "BestSellerCollectionViewCell", for: indexPath) as? BestSellerCollectionViewCell {
-            cell.configurePhone(bestSellerPhone: bestSellerPhones[indexPath.row])
+            cell.configurePhone(bestSellerPhone: bestSellerPhones[indexPath.row], cellIndexPath: indexPath)
+            cell.delegate = self
             return cell
         }
         else {
@@ -140,4 +149,25 @@ extension BestSellerView: UICollectionViewDataSource, UICollectionViewDelegate, 
         return 16
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if delegate != nil {
+            if scrollView.contentOffset.y > 0 && !delegate!.isNowHidden {
+                UIView.animate(withDuration: 0.5) {
+                    self.delegate?.isNowHidden = true
+                }
+            } else if scrollView.contentOffset.y <= 0 && delegate!.isNowHidden {
+                UIView.animate(withDuration: 0.5) {
+                    self.delegate?.isNowHidden = false
+                }
+            }
+        }
+    }
+    
+}
+
+extension BestSellerView: FavouritesChangeListening {
+    func favouritesDidTap(cellIndexPath: IndexPath) {
+        self.bestSellerPhones[cellIndexPath.row].isFavorites.toggle()
+        self.bestSellerCollectionView.reloadItems(at: [cellIndexPath])
+    }
 }

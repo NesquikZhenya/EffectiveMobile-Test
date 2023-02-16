@@ -58,6 +58,7 @@ extension AllProductsViewController: AllProductsViewModelListening {
             self.allProductsView.initializeHotSalesView(hotSalesPhones: hotSalesPhones)
         }
     }
+    
     func initializeBestSellerCollectionView(bestSellerPhones: [BestSellerPhone]) {
         DispatchQueue.main.async {
             self.allProductsView.initializeBestSellerView(bestSellerPhones: bestSellerPhones)

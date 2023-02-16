@@ -33,7 +33,6 @@ class AllProductsDataConverter {
         
         let fetchCompletion = { (allProducts: AllProductsDataModel?) in
             allProducts?.best_seller.forEach {
-                print($0.discount_price, $0.price_without_discount)
                 let bestSellerPhone = BestSellerPhone(id: $0.id, isFavorites: $0.is_favorites, title: $0.title, priceWithoutDiscount: $0.price_without_discount, discountPrice: $0.discount_price, picture: URL(string:$0.picture)!)
                 bestSellerPhones.append(bestSellerPhone)
                 

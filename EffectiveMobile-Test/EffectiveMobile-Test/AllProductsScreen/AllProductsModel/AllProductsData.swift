@@ -19,7 +19,7 @@ struct HotSalesPhone {
 
 struct BestSellerPhone {
     let id: Int
-    let isFavorites: Bool
+    var isFavorites: Bool
     let title: String
     let priceWithoutDiscount: Int
     let discountPrice: Int

@@ -36,6 +36,12 @@ final class AllProductsView: UIView {
         return imageView
     }()
     
+    private let backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(red: 0.971, green: 0.971, blue: 0.971, alpha: 1)
+        return view
+    }()
+    
     private let selectCategoryLabel: UILabel = {
         let label = UILabel()
         label.text = "Select Category"
@@ -83,6 +89,17 @@ final class AllProductsView: UIView {
         return stackView
     }()
     
+    lazy var productsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.addArrangedSubview(hotSalesView)
+        stackView.addArrangedSubview(bestSellerView)
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        hotSalesView.heightAnchor.constraint(equalToConstant: 226).isActive = true
+        stackView.layer.zPosition = CGFloat(-1)
+        return stackView
+    }()
+    
     private let hotSalesView: HotSalesView = {
         let view = HotSalesView()
         return view
@@ -99,6 +116,7 @@ final class AllProductsView: UIView {
         self.backgroundColor = UIColor(red: 0.971, green: 0.971, blue: 0.971, alpha: 1)
         loadViews()
         setupConstraints()
+        bestSellerView.delegate = hotSalesView
     }
     
     required init?(coder: NSCoder) {
@@ -113,16 +131,17 @@ extension AllProductsView: ViewSetuping {
     
     func loadViews(){
         [
+            productsStackView,
             geolocationImageView,
             geolocaionLabel,
             showMoreImageView,
             filtersImageView,
+            backgroundView,
             selectCategoryLabel,
             viewAllLabel,
             categoriesCollectionView,
-            searchStackView,
-            hotSalesView,
-            bestSellerView
+            productsStackView,
+            searchStackView
         ].forEach {self.addSubview($0)}
     }
     
@@ -131,24 +150,24 @@ extension AllProductsView: ViewSetuping {
         configureGeolocationImageViewConstraints()
         configureShowMoreImageViewConstraints()
         configureFiltersImageViewConstraints()
+        configureBackgroundViewConstraint()
         configureSelectCategoryLabelConstraints()
         configureViewAllLabelConstraints()
         configureCategoriesCollectionViewConstraints()
         configureSearchStackViewConstraints()
-        configureHotSalesViewConstraints()
-        configureBestSellerViewConstraints()
+        configureProductsStackViewConstraints()
         
         [
             geolocationImageView,
             geolocaionLabel,
+            productsStackView,
+            backgroundView,
             showMoreImageView,
             filtersImageView,
             selectCategoryLabel,
             viewAllLabel,
             categoriesCollectionView,
-            searchStackView,
-            hotSalesView,
-            bestSellerView
+            searchStackView
         ].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
     }
     
@@ -179,6 +198,15 @@ extension AllProductsView: ViewSetuping {
         [
             filtersImageView.centerYAnchor.constraint(equalTo: geolocaionLabel.centerYAnchor),
             filtersImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -35)
+        ].forEach { $0.isActive = true }
+    }
+    
+    private func configureBackgroundViewConstraint() {
+        [
+            backgroundView.topAnchor.constraint(equalTo: geolocaionLabel.bottomAnchor, constant: 18),
+            backgroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            backgroundView.bottomAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 24)
         ].forEach { $0.isActive = true }
     }
     
@@ -214,25 +242,14 @@ extension AllProductsView: ViewSetuping {
         ].forEach { $0.isActive = true }
     }
     
-    private func configureHotSalesViewConstraints() {
+    private func configureProductsStackViewConstraints() {
         [
-            hotSalesView.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 24),
-            hotSalesView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            hotSalesView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            hotSalesView.heightAnchor.constraint(equalToConstant: 226)
+            productsStackView.topAnchor.constraint(equalTo: searchStackView.bottomAnchor, constant: 24),
+            productsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            productsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            productsStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ].forEach { $0.isActive = true }
     }
-    
-    private func configureBestSellerViewConstraints() {
-        [
-            bestSellerView.topAnchor.constraint(equalTo: hotSalesView.bottomAnchor, constant: 8),
-            bestSellerView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            bestSellerView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            bestSellerView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        ].forEach { $0.isActive = true }
-    }
-    
-    
     
 }
 

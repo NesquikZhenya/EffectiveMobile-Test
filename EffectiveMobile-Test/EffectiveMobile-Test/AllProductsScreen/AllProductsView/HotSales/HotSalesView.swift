@@ -7,8 +7,9 @@
 
 import UIKit
 
-class HotSalesView: UIView {
 
+class HotSalesView: UIView {
+    
     private let hotSalesLabel: UILabel = {
         let label = UILabel()
         label.text = "Hot Sales"
@@ -145,3 +146,15 @@ extension HotSalesView {
     }
 }
 
+extension HotSalesView: HotSalesViewHiding {
+    
+    var isNowHidden: Bool {
+        get {
+            self.isHidden
+        }
+        set {
+            self.isHidden = newValue
+        }
+    }
+
+}

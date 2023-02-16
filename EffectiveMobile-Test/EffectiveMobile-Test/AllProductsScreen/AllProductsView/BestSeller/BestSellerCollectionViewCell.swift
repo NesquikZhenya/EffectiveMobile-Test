@@ -7,7 +7,15 @@
 
 import UIKit
 
+protocol FavouritesChangeListening: AnyObject {
+    func favouritesDidTap(cellIndexPath: IndexPath)
+}
+
 class BestSellerCollectionViewCell: UICollectionViewCell {
+    
+    weak var delegate: FavouritesChangeListening?
+    
+    private var cellIndexPath: IndexPath = IndexPath()
     
     private var phoneImageView: UIImageView = {
         let imageView = UIImageView()
@@ -60,13 +68,15 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
         self.clipsToBounds = true
         loadViews()
         setupConstraints()
+        favouritesView.addGestureRecognizer(favouritesGestureRecognizer)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configurePhone (bestSellerPhone: BestSellerPhone) {
+    func configurePhone (bestSellerPhone: BestSellerPhone, cellIndexPath: IndexPath) {
+        self.cellIndexPath = cellIndexPath
         phoneImageView.downloaded(from: bestSellerPhone.picture)
         phoneNameLabel.text = bestSellerPhone.title
         priceBeforeLabel.text = priceRefactored(price: bestSellerPhone.discountPrice)
@@ -80,11 +90,17 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func priceRefactored(price: Int) -> String {
+    lazy var favouritesGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(favouritesDidTap))
+    
+    @objc func favouritesDidTap() {
+        delegate?.favouritesDidTap(cellIndexPath: self.cellIndexPath)
+    }
+    
+    private func priceRefactored(price: Int) -> String {
         if price < 1000 {
             return "\(price)"
         } else {
-            return (String(price).prefix(1) + "," + String(price).suffix(3))
+                return (String(price).prefix(1) + "," + String(price).suffix(3))
         }
     }
 }
