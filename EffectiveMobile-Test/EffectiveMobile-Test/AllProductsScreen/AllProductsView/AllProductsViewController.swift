@@ -10,7 +10,6 @@ import UIKit
 protocol AllProductsViewModelListening: AnyObject {
     func initializeHotSalesView(hotSalesPhones: [HotSalesPhone])
     func initializeBestSellerCollectionView(bestSellerPhones: [BestSellerPhone])
-
 }
 
 
@@ -19,11 +18,7 @@ class AllProductsViewController: UIViewController {
     private var allProductsViewModel: AllProductsViewModel
         
     let allProductsView = AllProductsView()
-    
-    func dodo(hotSalesPhones: [HotSalesPhone]) {
-        self.allProductsView.initializeHotSalesView(hotSalesPhones: hotSalesPhones)
-    }
-    
+        
     init(allProductsViewModel: AllProductsViewModel = AllProductsViewModel()) {
         self.allProductsViewModel = allProductsViewModel
         super.init(nibName: .none, bundle: .none)
@@ -40,6 +35,7 @@ class AllProductsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         allProductsViewModel.delegate = self
+        allProductsView.updateDelegate = self
         allProductsView.categoriesCollectionView.dataSource = self
         allProductsView.categoriesCollectionView.delegate = self
         allProductsView.categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "CategoriesCollectionViewCell")
@@ -65,6 +61,12 @@ extension AllProductsViewController: AllProductsViewModelListening {
         }
     }
     
+}
+
+extension AllProductsViewController: FavouritesUpdating {
+    func updateFavourites(bestSellerPhones: [BestSellerPhone]) {
+        allProductsViewModel.updateBestSellerPhones(bestSellerPhones: bestSellerPhones)
+    }
 }
 
 //MARK: CollectionView Configuration

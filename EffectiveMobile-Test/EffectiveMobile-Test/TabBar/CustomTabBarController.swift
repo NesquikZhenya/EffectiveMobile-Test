@@ -58,7 +58,7 @@ class CustomTabBarController: UITabBarController {
           viewControllers = [
             createNavigationController(for: AllProductsViewController(), title: "Explorer", image: UIImage(named: "explorer")),
             createNavigationController(for: UIViewController(), title: "Cart", image: UIImage(named: "cart")),
-            createNavigationController(for: UIViewController(), title: "Favourites", image: UIImage(named: "favourites")),
+            createNavigationController(for: FavouritesViewController(), title: "Favourites", image: UIImage(named: "favourites")),
             createNavigationController(for: UIViewController(), title: "Profile", image: UIImage(named: "profile")),
           ]
       }

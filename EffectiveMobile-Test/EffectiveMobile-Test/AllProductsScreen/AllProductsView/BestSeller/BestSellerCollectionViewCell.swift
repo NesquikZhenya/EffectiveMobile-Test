@@ -96,7 +96,7 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
         delegate?.favouritesDidTap(cellIndexPath: self.cellIndexPath)
     }
     
-    private func priceRefactored(price: Int) -> String {
+    private func priceRefactored(price: Int32) -> String {
         if price < 1000 {
             return "\(price)"
         } else {

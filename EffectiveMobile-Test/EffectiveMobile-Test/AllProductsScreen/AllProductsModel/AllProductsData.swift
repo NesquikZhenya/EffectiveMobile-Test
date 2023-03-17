@@ -18,11 +18,11 @@ struct HotSalesPhone {
 }
 
 struct BestSellerPhone {
-    let id: Int
+    let id: Int32
     var isFavorites: Bool
     let title: String
-    let priceWithoutDiscount: Int
-    let discountPrice: Int
+    let priceWithoutDiscount: Int32
+    let discountPrice: Int32
     let picture: URL
 }
 

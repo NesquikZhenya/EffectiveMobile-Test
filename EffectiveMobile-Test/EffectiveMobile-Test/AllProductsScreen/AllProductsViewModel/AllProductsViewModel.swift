@@ -24,9 +24,14 @@ protocol BestSellerDataPresentable: AnyObject {
     func getBestSellerPhones()
 }
 
+protocol BestSellerDataUpdating: AnyObject {
+    func updateBestSellerPhones(bestSellerPhones: [BestSellerPhone])
+}
+
 final class AllProductsViewModel {
     
     weak var delegate: AllProductsViewModelListening?
+    private let phonesDataStorage = PhonesDataStorage()
     
     private var categoriesDataProvider: CategoriesDataProviding
     private var allProductsDataProvider: AllProductsDataProviding
@@ -86,15 +91,37 @@ extension AllProductsViewModel: HotSalesDataPresentable {
 extension AllProductsViewModel: BestSellerDataPresentable {
     
     func getBestSellerPhones() {
-        let provideCompletion = { (bestSellerPhones: [BestSellerPhone]) in
-            self.bestSellerPhones = bestSellerPhones
-            self.delegate?.initializeBestSellerCollectionView(bestSellerPhones: bestSellerPhones)
+        
+        let fetchStoredBestSellersPhoneCompletion = { (storedBestSellerPhones: [StoredBestSellerPhone]) in
+            if storedBestSellerPhones.isEmpty {
+                let provideCompletion = { (bestSellerPhones: [BestSellerPhone]) in
+                    self.phonesDataStorage.saveAll(bestSellerPhones: bestSellerPhones)
+                    self.delegate?.initializeBestSellerCollectionView(bestSellerPhones: bestSellerPhones)
+                }
+                self.allProductsDataProvider.provideBestSellerPhonesData(provideCompletion: provideCompletion)
+            } else {
+                self.delegate?.initializeBestSellerCollectionView(bestSellerPhones: transformed(storedBestSellerPhones: storedBestSellerPhones))
+            }
         }
-        if self.hotSalesPhones.isEmpty == true {
-            allProductsDataProvider.provideBestSellerPhonesData(provideCompletion: provideCompletion)
-        } else {
-            self.delegate?.initializeBestSellerCollectionView(bestSellerPhones: bestSellerPhones)
+        phonesDataStorage.fetchAll(completion: fetchStoredBestSellersPhoneCompletion)
+        
+        func transformed(storedBestSellerPhones: [StoredBestSellerPhone]) -> [BestSellerPhone] {
+            var bestSellerPhones: [BestSellerPhone] = []
+            storedBestSellerPhones.forEach {
+                let bestSellerPhone = BestSellerPhone(id: $0.id, isFavorites: $0.isFavorites, title: $0.title!, priceWithoutDiscount: $0.priceWithoutDiscount, discountPrice: $0.discountPrice, picture: $0.picture!)
+                bestSellerPhones.append(bestSellerPhone)
+            }
+            return bestSellerPhones
         }
+        
     }
+    
 }
 
+extension AllProductsViewModel: BestSellerDataUpdating {
+    
+    func updateBestSellerPhones(bestSellerPhones: [BestSellerPhone]) {
+        self.phonesDataStorage.updateAllFavourites(bestSellerPhones: bestSellerPhones)
+    }
+    
+}

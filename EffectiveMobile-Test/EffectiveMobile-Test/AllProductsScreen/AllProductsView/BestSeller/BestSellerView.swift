@@ -13,9 +13,17 @@ protocol HotSalesViewHiding: AnyObject {
 
 }
 
+protocol FavouritesUpdating: AnyObject {
+    
+    func updateFavourites(bestSellerPhones: [BestSellerPhone])
+
+}
+
 class BestSellerView: UIView {
     
     weak var delegate: HotSalesViewHiding?
+    
+    weak var updateDelegate: FavouritesUpdating?
     
     private var bestSellerPhones: [BestSellerPhone] = []
     
@@ -169,5 +177,6 @@ extension BestSellerView: FavouritesChangeListening {
     func favouritesDidTap(cellIndexPath: IndexPath) {
         self.bestSellerPhones[cellIndexPath.row].isFavorites.toggle()
         self.bestSellerCollectionView.reloadItems(at: [cellIndexPath])
+        updateDelegate?.updateFavourites(bestSellerPhones: bestSellerPhones)
     }
 }

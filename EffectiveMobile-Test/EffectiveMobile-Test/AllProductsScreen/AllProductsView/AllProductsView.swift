@@ -9,6 +9,8 @@ import UIKit
 
 final class AllProductsView: UIView {
     
+    weak var updateDelegate: FavouritesUpdating?
+    
     private let geolocationImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "geolocation")
@@ -117,6 +119,7 @@ final class AllProductsView: UIView {
         loadViews()
         setupConstraints()
         bestSellerView.delegate = hotSalesView
+        bestSellerView.updateDelegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -264,5 +267,11 @@ extension AllProductsView {
     func initializeBestSellerView(bestSellerPhones: [BestSellerPhone]) {
         bestSellerView.configureBestSellerCollectionView(bestSellerPhones: bestSellerPhones)
     }
+    
 }
 
+extension AllProductsView: FavouritesUpdating {
+    func updateFavourites(bestSellerPhones: [BestSellerPhone]) {
+        updateDelegate?.updateFavourites(bestSellerPhones: bestSellerPhones)
+    }
+}
