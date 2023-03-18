@@ -40,19 +40,35 @@ struct PhonesDataStorage {
         }
     }
     
-    func updateAllFavourites(bestSellerPhones: [BestSellerPhone]) {
+    func updateFavourite(bestSellerPhone: BestSellerPhone) {
+        context.perform {
+            let fetchRequest = StoredBestSellerPhone.fetchRequest() as! NSFetchRequest<StoredBestSellerPhone>
+            let storedBestSellerPhones = try! context.fetch(fetchRequest)
+            let storedBestSellerPhone = storedBestSellerPhones.first(where:{$0.id == bestSellerPhone.id})
+            storedBestSellerPhone?.isFavorites = bestSellerPhone.isFavorites
+            try! context.save()
+        }
+    }
+    
+    func updateAll(bestSellerPhones: [BestSellerPhone]) {
         context.perform {
             let fetchRequest = StoredBestSellerPhone.fetchRequest() as! NSFetchRequest<StoredBestSellerPhone>
             let storedBestSellerPhones = try! context.fetch(fetchRequest)
             for i in 0...bestSellerPhones.count - 1 {
                 storedBestSellerPhones[i].isFavorites = bestSellerPhones[i].isFavorites
+                storedBestSellerPhones[i].setValue("GЫСА", forKey: "title")
             }
             try! context.save()
         }
     }
     
-    func fetch() {
-        
+    func fetchFavourites(completion: @escaping ([StoredBestSellerPhone]) -> ()?) {
+        context.perform {
+            let fetchRequest = StoredBestSellerPhone.fetchRequest() as! NSFetchRequest<StoredBestSellerPhone>
+            let storedBestSellerPhones = try! context.fetch(fetchRequest)
+            let favouriteStoredBestSellerPhones = storedBestSellerPhones.filter({$0.isFavorites == true})
+            completion(favouriteStoredBestSellerPhones)
+        }
     }
     
     func fetchAll(completion: @escaping ([StoredBestSellerPhone]) -> ()?) {

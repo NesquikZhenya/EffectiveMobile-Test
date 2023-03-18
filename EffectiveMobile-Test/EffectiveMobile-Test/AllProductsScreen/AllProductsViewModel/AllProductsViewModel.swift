@@ -25,7 +25,7 @@ protocol BestSellerDataPresentable: AnyObject {
 }
 
 protocol BestSellerDataUpdating: AnyObject {
-    func updateBestSellerPhones(bestSellerPhones: [BestSellerPhone])
+    func updateBestSellerPhone(bestSellerPhone: BestSellerPhone)
 }
 
 final class AllProductsViewModel {
@@ -120,8 +120,8 @@ extension AllProductsViewModel: BestSellerDataPresentable {
 
 extension AllProductsViewModel: BestSellerDataUpdating {
     
-    func updateBestSellerPhones(bestSellerPhones: [BestSellerPhone]) {
-        self.phonesDataStorage.updateAllFavourites(bestSellerPhones: bestSellerPhones)
+    func updateBestSellerPhone(bestSellerPhone: BestSellerPhone) {
+        self.phonesDataStorage.updateFavourite(bestSellerPhone: bestSellerPhone)
     }
     
 }

@@ -13,6 +13,10 @@ protocol FavouritesDataPresentable: AnyObject {
     func getFavourites()
 }
 
+protocol FavouritesDataUpdating: AnyObject {
+    func updateFavourite(favourite: BestSellerPhone)
+}
+
 final class FavouritesViewModel {
     
     weak var delegate: FavouritesViewModelListening?
@@ -32,21 +36,27 @@ extension FavouritesViewModel: FavouritesDataPresentable {
     func getFavourites() {
         
         let fetchFavouritesCompletion = { (storedBestSellerPhones: [StoredBestSellerPhone]) in
-                self.delegate?.initializeFavouritesView(favourites: transformedFavourites(storedBestSellerPhones: storedBestSellerPhones))
+                self.delegate?.initializeFavouritesView(favourites: transformed(storedBestSellerPhones: storedBestSellerPhones))
         }
-        phonesDataStorage.fetchAll(completion: fetchFavouritesCompletion)
+        phonesDataStorage.fetchFavourites(completion: fetchFavouritesCompletion)
         
-        func transformedFavourites(storedBestSellerPhones: [StoredBestSellerPhone]) -> [BestSellerPhone] {
+        func transformed(storedBestSellerPhones: [StoredBestSellerPhone]) -> [BestSellerPhone] {
             var bestSellerPhones: [BestSellerPhone] = []
             storedBestSellerPhones.forEach {
-                if $0.isFavorites {
-                    let bestSellerPhone = BestSellerPhone(id: $0.id, isFavorites: $0.isFavorites, title: $0.title!, priceWithoutDiscount: $0.priceWithoutDiscount, discountPrice: $0.discountPrice, picture: $0.picture!)
-                    bestSellerPhones.append(bestSellerPhone)
-                }
+                let bestSellerPhone = BestSellerPhone(id: $0.id, isFavorites: $0.isFavorites, title: $0.title!, priceWithoutDiscount: $0.priceWithoutDiscount, discountPrice: $0.discountPrice, picture: $0.picture!)
+                bestSellerPhones.append(bestSellerPhone)
             }
             return bestSellerPhones
         }
         
+    }
+    
+}
+
+extension FavouritesViewModel: FavouritesDataUpdating {
+    
+    func updateFavourite(favourite: BestSellerPhone) {
+        self.phonesDataStorage.updateFavourite(bestSellerPhone: favourite)
     }
     
 }

@@ -271,7 +271,7 @@ extension AllProductsView {
 }
 
 extension AllProductsView: FavouritesUpdating {
-    func updateFavourites(bestSellerPhones: [BestSellerPhone]) {
-        updateDelegate?.updateFavourites(bestSellerPhones: bestSellerPhones)
+    func updateFavourite(bestSellerPhone: BestSellerPhone) {
+        updateDelegate?.updateFavourite(bestSellerPhone: bestSellerPhone)
     }
 }

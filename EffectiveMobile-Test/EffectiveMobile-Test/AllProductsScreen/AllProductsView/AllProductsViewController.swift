@@ -43,6 +43,10 @@ class AllProductsViewController: UIViewController {
         allProductsViewModel.getBestSellerPhones()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        allProductsViewModel.getBestSellerPhones()
+    }
+    
 }
 
 //MARK: delegate protocol conforming
@@ -64,8 +68,8 @@ extension AllProductsViewController: AllProductsViewModelListening {
 }
 
 extension AllProductsViewController: FavouritesUpdating {
-    func updateFavourites(bestSellerPhones: [BestSellerPhone]) {
-        allProductsViewModel.updateBestSellerPhones(bestSellerPhones: bestSellerPhones)
+    func updateFavourite(bestSellerPhone: BestSellerPhone) {
+        allProductsViewModel.updateBestSellerPhone(bestSellerPhone: bestSellerPhone)
     }
 }
 

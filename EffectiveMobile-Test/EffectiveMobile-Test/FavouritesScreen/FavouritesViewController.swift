@@ -89,5 +89,6 @@ extension FavouritesViewController: FavouritesChangeListening {
     func favouritesDidTap(cellIndexPath: IndexPath) {
         self.favourites[cellIndexPath.row].isFavorites.toggle()
         self.favouritesView.favouritesCollectionView.reloadItems(at: [cellIndexPath])
+        favouritesViewModel.updateFavourite(favourite: favourites[cellIndexPath.row])
     }
 }
