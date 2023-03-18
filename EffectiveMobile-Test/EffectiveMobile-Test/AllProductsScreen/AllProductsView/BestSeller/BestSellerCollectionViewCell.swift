@@ -75,6 +75,10 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        phoneImageView.image = UIImage()
+    }
+    
     func configurePhone (bestSellerPhone: BestSellerPhone, cellIndexPath: IndexPath) {
         self.cellIndexPath = cellIndexPath
         phoneImageView.downloaded(from: bestSellerPhone.picture)

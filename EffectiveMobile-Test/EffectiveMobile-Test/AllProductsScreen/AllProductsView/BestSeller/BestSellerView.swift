@@ -128,7 +128,7 @@ extension BestSellerView {
 }
 
 extension BestSellerView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
+        
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bestSellerPhones.count
     }
