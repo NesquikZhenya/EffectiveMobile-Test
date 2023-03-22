@@ -1,5 +1,5 @@
 //
-//  AllProductsData.swift
+//  AllProductsDataModel.swift
 //  EffectiveMobile-Test
 //
 //  Created by Евгений Михневич on 13.02.2023.
@@ -7,6 +7,12 @@
 
 import Foundation
 import UIKit
+
+struct ItemCategory {
+    let name: String
+    let imageName: String
+    var isSelected: Bool
+}
 
 struct HotSalesPhone {
     let id: Int
@@ -49,7 +55,3 @@ struct AllProductsDataModel: Codable {
     let best_seller: [BestSellerPhoneDataModel]
 }
 
-struct AllProductsData {
-    let hotSalesPhones: [HotSalesPhone]
-    let bestSellerPhone: [BestSellerPhone]
-}

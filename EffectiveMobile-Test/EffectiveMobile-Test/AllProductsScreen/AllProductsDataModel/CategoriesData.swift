@@ -7,13 +7,9 @@
 
 import Foundation
 
-struct ItemCategory {
-    let name: String
-    let imageName: String
-    var isSelected: Bool
-}
-
-struct CategoriesData {
+class CategoriesData {
+    
+    static var shared = CategoriesData()
     
     var categories: [ItemCategory] = [
         ItemCategory(name: "Phones", imageName: "phone", isSelected: true),

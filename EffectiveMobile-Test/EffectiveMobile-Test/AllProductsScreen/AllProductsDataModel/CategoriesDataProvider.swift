@@ -18,22 +18,20 @@ protocol CategoriesDataProviding {
 }
 
 struct CategoriesDataProvider: CategoriesDataProviding {
-    
-    var categoriesData = CategoriesData()
-        
+            
     var selectedCategoryId: Int = .zero
     
     func getCategories() -> [ItemCategory] {
-        return categoriesData.categories
+        return CategoriesData.shared.categories
     }
     
     mutating func setCategories(newCategories: [ItemCategory]) {
-        categoriesData.categories = newCategories
+        CategoriesData.shared.categories = newCategories
     }
     
     mutating func categoryDidTap(newSelectedId: Int, oldSelectedId: Int) {
-        categoriesData.categories[oldSelectedId].isSelected.toggle()
-        categoriesData.categories[newSelectedId].isSelected.toggle()
+        CategoriesData.shared.categories[oldSelectedId].isSelected.toggle()
+        CategoriesData.shared.categories[newSelectedId].isSelected.toggle()
     }
     
 }
