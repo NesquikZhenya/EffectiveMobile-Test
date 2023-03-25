@@ -24,7 +24,6 @@ class HotSalesPhoneView: UIView {
         label.text = "New"
         label.textColor = .white
         label.font = UIFont(name: "MarkPro-Bold", size: 10)
-        label.font = label.font.withSize(10)
         view.addSubview(label)
         label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -39,7 +38,6 @@ class HotSalesPhoneView: UIView {
         label.text = "iPhone 12"
         label.textColor = .white
         label.font = UIFont(name: "MarkPro-Bold", size: 25)
-        label.font = label.font.withSize(25)
         return label
     }()
     
@@ -48,7 +46,6 @@ class HotSalesPhoneView: UIView {
         label.text = "Super. Mega. Rapido"
         label.textColor = .white
         label.font = UIFont(name: "MarkPro-Regular", size: 11)
-        label.font = label.font.withSize(11)
         return label
     }()
     

@@ -19,7 +19,6 @@ final class SearchView: UIView {
         let textField = UITextField()
         textField.placeholder = "Search"
         textField.font = UIFont(name: "MarkPro-Regular", size: 12)
-        textField.font = textField.font?.withSize(12)
         textField.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 0.5)
         return textField
     }()

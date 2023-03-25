@@ -6,8 +6,8 @@
 	<array>
 		<string>Mark-Pro.ttf</string>
 		<string>Mark-Pro-Bold.ttf</string>
-		<string>Mark-Pro-Regular.ttf</string>
-		<string>Mark-Pro-Medium.ttf</string>
+		<string>MarkPro-Regular.ttf</string>
+		<string>MarkPro-Medium.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

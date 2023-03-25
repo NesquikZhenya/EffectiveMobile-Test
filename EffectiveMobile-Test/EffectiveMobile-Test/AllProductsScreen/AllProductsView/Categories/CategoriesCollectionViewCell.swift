@@ -23,7 +23,6 @@ class CategoriesCollectionViewCell: UICollectionViewCell {
     private var categoryNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "MarkPro-Medium", size: 12)
-        label.font = label.font.withSize(12)
         return label
         
     }()

@@ -25,7 +25,6 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
     private var priceAfterLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "MarkPro-Bold", size: 16)
-        label.font = label.font.withSize(16)
         label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
         return label
     }()
@@ -33,7 +32,6 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
     private var priceBeforeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "MarkPro-Medium", size: 10)
-        label.font = label.font.withSize(10)
         label.textColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         return label
     }()
@@ -41,7 +39,6 @@ class BestSellerCollectionViewCell: UICollectionViewCell {
     private var phoneNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "MarkPro-Refular", size: 10)
-        label.font = label.font.withSize(10)
         return label
     }()
     

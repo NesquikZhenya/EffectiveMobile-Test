@@ -15,7 +15,6 @@ class HotSalesView: UIView {
         label.text = "Hot Sales"
         label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
         label.font = UIFont(name: "MarkPro-Bold", size: 25)
-        label.font = label.font.withSize(25)
         return label
     }()
     
@@ -24,7 +23,6 @@ class HotSalesView: UIView {
         label.text = "see more"
         label.textColor = UIColor(red: 1, green: 0.429, blue: 0.304, alpha: 1)
         label.font = UIFont(name: "MarkPro-Regular", size: 15)
-        label.font = label.font.withSize(15)
         return label
     }()
     

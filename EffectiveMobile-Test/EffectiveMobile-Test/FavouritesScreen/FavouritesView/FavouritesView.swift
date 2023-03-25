@@ -16,7 +16,6 @@ class FavouritesView: UIView {
         label.text = "Favourites"
         label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
         label.font = UIFont(name: "MarkPro-Bold", size: 25)
-        label.font = label.font.withSize(25)
         return label
     }()
     
