@@ -19,11 +19,17 @@ protocol FavouritesUpdating: AnyObject {
 
 }
 
+protocol ProductDetailsShowing: AnyObject {
+    
+    func showViewController(for productId: Int32)
+
+}
+
 class BestSellerView: UIView {
     
-    weak var delegate: HotSalesViewHiding?
-    
+    weak var hideDelegate: HotSalesViewHiding?
     weak var updateDelegate: FavouritesUpdating?
+    weak var detailsDelegate: ProductDetailsShowing?
     
     private var bestSellerPhones: [BestSellerPhone] = []
     
@@ -155,15 +161,19 @@ extension BestSellerView: UICollectionViewDataSource, UICollectionViewDelegate, 
         return 16
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        detailsDelegate?.showViewController(for: bestSellerPhones[indexPath.row].id)
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if delegate != nil {
-            if scrollView.contentOffset.y > 0 && !delegate!.isNowHidden {
+        if hideDelegate != nil {
+            if scrollView.contentOffset.y > 0 && !hideDelegate!.isNowHidden {
                 UIView.animate(withDuration: 0.5) {
-                    self.delegate?.isNowHidden = true
+                    self.hideDelegate?.isNowHidden = true
                 }
-            } else if scrollView.contentOffset.y <= 0 && delegate!.isNowHidden {
+            } else if scrollView.contentOffset.y <= 0 && hideDelegate!.isNowHidden {
                 UIView.animate(withDuration: 0.5) {
-                    self.delegate?.isNowHidden = false
+                    self.hideDelegate?.isNowHidden = false
                 }
             }
         }

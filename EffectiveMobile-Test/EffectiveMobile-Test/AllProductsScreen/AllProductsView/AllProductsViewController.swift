@@ -36,6 +36,7 @@ class AllProductsViewController: UIViewController {
         super.viewDidLoad()
         allProductsViewModel.delegate = self
         allProductsView.updateDelegate = self
+        allProductsView.detailsDelegate = self
         allProductsView.categoriesCollectionView.dataSource = self
         allProductsView.categoriesCollectionView.delegate = self
         allProductsView.categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "CategoriesCollectionViewCell")
@@ -70,6 +71,12 @@ extension AllProductsViewController: AllProductsViewModelListening {
 extension AllProductsViewController: FavouritesUpdating {
     func updateFavourite(bestSellerPhone: BestSellerPhone) {
         allProductsViewModel.updateBestSellerPhone(bestSellerPhone: bestSellerPhone)
+    }
+}
+
+extension AllProductsViewController: ProductDetailsShowing {
+    func showViewController(for productId: Int32) {
+        self.navigationController?.pushViewController(ProductDetailsViewController(), animated: true)
     }
 }
 

@@ -10,6 +10,8 @@ import UIKit
 final class AllProductsView: UIView {
     
     weak var updateDelegate: FavouritesUpdating?
+    weak var detailsDelegate: ProductDetailsShowing?
+
     
     private let geolocationImageView: UIImageView = {
         let imageView = UIImageView()
@@ -115,8 +117,9 @@ final class AllProductsView: UIView {
         self.backgroundColor = UIColor(red: 0.971, green: 0.971, blue: 0.971, alpha: 1)
         loadViews()
         setupConstraints()
-        bestSellerView.delegate = hotSalesView
+        bestSellerView.hideDelegate = hotSalesView
         bestSellerView.updateDelegate = self
+        bestSellerView.detailsDelegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -270,5 +273,11 @@ extension AllProductsView {
 extension AllProductsView: FavouritesUpdating {
     func updateFavourite(bestSellerPhone: BestSellerPhone) {
         updateDelegate?.updateFavourite(bestSellerPhone: bestSellerPhone)
+    }
+}
+
+extension AllProductsView: ProductDetailsShowing {
+    func showViewController(for productId: Int32) {
+        detailsDelegate?.showViewController(for: productId)
     }
 }

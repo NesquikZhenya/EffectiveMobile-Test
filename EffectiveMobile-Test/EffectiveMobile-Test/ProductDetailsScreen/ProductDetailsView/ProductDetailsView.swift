@@ -19,7 +19,7 @@ class ProductDetailsView: UIView {
     }()
     
     private let productConfigurationView: UIView = {
-        let view = UIView()
+        let view = ProductConfigurationView()
         return view
     }()
     
@@ -50,7 +50,7 @@ extension ProductDetailsView: ViewSetuping {
     
     func setupConstraints() {
         configureProductImagesScrollViewConstraints()
-        configureproductConfigurationViewConstraints()
+        configureProductConfigurationViewConstraints()
         
         [
             productImagesScrollView,
@@ -62,11 +62,12 @@ extension ProductDetailsView: ViewSetuping {
         [
             productImagesScrollView.topAnchor.constraint(equalTo: self.topAnchor, constant: 128),
             productImagesScrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            productImagesScrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+            productImagesScrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            productImagesScrollView.heightAnchor.constraint(equalToConstant: 300)
         ].forEach { $0.isActive = true }
     }
     
-    private func configureproductConfigurationViewConstraints() {
+    private func configureProductConfigurationViewConstraints() {
         [
             productConfigurationView.topAnchor.constraint(equalTo: productImagesScrollView.bottomAnchor, constant: 8),
             productConfigurationView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
