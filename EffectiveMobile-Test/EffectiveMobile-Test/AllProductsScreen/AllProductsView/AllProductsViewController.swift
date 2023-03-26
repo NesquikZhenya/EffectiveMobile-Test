@@ -76,7 +76,8 @@ extension AllProductsViewController: FavouritesUpdating {
 
 extension AllProductsViewController: ProductDetailsShowing {
     func showViewController(for productId: Int32) {
-        self.navigationController?.pushViewController(ProductDetailsViewController(), animated: true)
+        self.tabBarController?.navigationController?.pushViewController(ProductDetailsViewController(), animated: true)
+//        self.navigationController?.pushViewController(ProductDetailsViewController(), animated: true)
     }
 }
 

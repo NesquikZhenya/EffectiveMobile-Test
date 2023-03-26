@@ -20,6 +20,11 @@ class ProductDetailsView: UIView {
     
     private let productConfigurationView: UIView = {
         let view = ProductConfigurationView()
+        view.layer.cornerRadius = 30
+        view.layer.shadowColor = UIColor(red: 0.298, green: 0.372, blue: 0.562, alpha: 0.1).cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 20
         return view
     }()
     
@@ -64,6 +69,7 @@ extension ProductDetailsView: ViewSetuping {
             productImagesScrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             productImagesScrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             productImagesScrollView.heightAnchor.constraint(equalToConstant: 300)
+//            productImagesScrollView.heightAnchor.constraint(equalToConstant: (productImagesScrollView.frame.width * 0.8))
         ].forEach { $0.isActive = true }
     }
     

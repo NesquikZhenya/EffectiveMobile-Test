@@ -11,7 +11,7 @@ class ProductConfigurationView: UIView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Galaxy"
+        label.text = "Galaxy Note 20 Ultra"
         label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
         label.font = UIFont(name: "MarkPro-Medium", size: 24)
         return label
@@ -26,6 +26,7 @@ class ProductConfigurationView: UIView {
     
     private let favouriteImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named: "favourite")
         return imageView
     }()
     
@@ -52,9 +53,9 @@ class ProductConfigurationView: UIView {
     
     private let productInfoFeaturesLabel: UILabel = {
         let label = UILabel()
-        label.text = "Shop"
+        label.text = "Features"
         label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
-        label.font = UIFont(name: "MarkPro-Bold", size: 20)
+        label.font = UIFont(name: "MarkPro-Regular", size: 20)
         return label
     }()
     
@@ -160,7 +161,9 @@ extension ProductConfigurationView: ViewSetuping {
     private func configureFavouriteBackgroundView() {
         [
             favouriteBackgroundView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            favouriteBackgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -38)
+            favouriteBackgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -38),
+            favouriteBackgroundView.heightAnchor.constraint(equalToConstant: 32),
+            favouriteBackgroundView.widthAnchor.constraint(equalToConstant: 38)
         ].forEach { $0.isActive = true }
     }
     
