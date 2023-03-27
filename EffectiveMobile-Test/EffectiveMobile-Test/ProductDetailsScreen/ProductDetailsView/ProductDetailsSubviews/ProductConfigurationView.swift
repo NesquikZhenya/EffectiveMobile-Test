@@ -32,7 +32,18 @@ class ProductConfigurationView: UIView {
     
     private let productRatingView: UIView = {
         let view = ProductRatingView()
+        view.configureView(rating: 3.5)
         return view
+    }()
+    
+    lazy var productInfoLabelsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.addArrangedSubview(productInfoShopLabel)
+        stackView.addArrangedSubview(productInfoDetailsLabel)
+        stackView.addArrangedSubview(productInfoFeaturesLabel)
+        return stackView
     }()
     
     private let productInfoShopLabel: UILabel = {
@@ -110,9 +121,7 @@ extension ProductConfigurationView: ViewSetuping {
             favouriteBackgroundView,
             favouriteImageView,
             productRatingView,
-            productInfoShopLabel,
-            productInfoDetailsLabel,
-            productInfoFeaturesLabel,
+            productInfoLabelsStackView,
             underlineView,
             productInfoShopView,
             productInfoDetailsView,
@@ -126,9 +135,7 @@ extension ProductConfigurationView: ViewSetuping {
         configureFavouriteBackgroundView()
         configureFavouriteImageView()
         configureProductRatingView()
-        configureProductInfoShopLabel()
-        configureProductInfoDetailsLabel()
-        configureProductInfoFeaturesLabel()
+        configureProductInfoLabelsStackView()
         configureUnderlineView()
         configureProductInfoShopView()
         configureProductInfoDetailsView()
@@ -140,9 +147,7 @@ extension ProductConfigurationView: ViewSetuping {
             favouriteBackgroundView,
             favouriteImageView,
             productRatingView,
-            productInfoShopLabel,
-            productInfoDetailsLabel,
-            productInfoFeaturesLabel,
+            productInfoLabelsStackView,
             underlineView,
             productInfoShopView,
             productInfoDetailsView,
@@ -181,24 +186,11 @@ extension ProductConfigurationView: ViewSetuping {
         ].forEach { $0.isActive = true }
     }
     
-    private func configureProductInfoShopLabel() {
+    private func configureProductInfoLabelsStackView() {
         [
-            productInfoShopLabel.topAnchor.constraint(equalTo: productRatingView.bottomAnchor, constant: 32),
-            productInfoShopLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 45)
-        ].forEach { $0.isActive = true }
-    }
-    
-    private func configureProductInfoDetailsLabel() {
-        [
-            productInfoDetailsLabel.topAnchor.constraint(equalTo: productRatingView.bottomAnchor, constant: 32),
-            productInfoDetailsLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        ].forEach { $0.isActive = true }
-    }
-    
-    private func configureProductInfoFeaturesLabel() {
-        [
-            productInfoFeaturesLabel.topAnchor.constraint(equalTo: productRatingView.bottomAnchor, constant: 32),
-            productInfoFeaturesLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -40)
+            productInfoLabelsStackView.topAnchor.constraint(equalTo: productRatingView.bottomAnchor, constant: 32),
+            productInfoLabelsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
+            productInfoLabelsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32)
         ].forEach { $0.isActive = true }
     }
     
