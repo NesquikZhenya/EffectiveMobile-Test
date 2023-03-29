@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol DetailedProductDataPresentable: AnyObject {
-    func getDetailedProduct()
+    func getDetailedProduct(productId: Int32)
 }
 
 final class ProductDetailsViewModel {
@@ -28,11 +28,11 @@ final class ProductDetailsViewModel {
 
 extension ProductDetailsViewModel: DetailedProductDataPresentable {
     
-    func getDetailedProduct() {
+    func getDetailedProduct(productId: Int32) {
         let provideCompletion = { (detailedProduct: DetailedProduct) in
             self.delegate?.initializeView(detailedProduct: detailedProduct)
         }
-        self.productDetailsDataProvider.provideProductDetailsData(provideCompletion: provideCompletion)
+        self.productDetailsDataProvider.provideProductDetailsData(productId: productId, provideCompletion: provideCompletion)
     }
     
 }

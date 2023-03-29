@@ -8,19 +8,19 @@
 import Foundation
 
 protocol ProductDetailsDataProviding {
-    func provideProductDetailsData(provideCompletion: @escaping (DetailedProduct)->()?)
+    func provideProductDetailsData(productId: Int32, provideCompletion: @escaping (DetailedProduct)->()?)
 }
 
 struct ProductDetailsDataProvider: ProductDetailsDataProviding {
     
     let productDetailsDataConverter = ProductDetailsDataConverter()
     
-    func provideProductDetailsData(provideCompletion: @escaping (DetailedProduct) -> ()?) {
+    func provideProductDetailsData(productId: Int32, provideCompletion: @escaping (DetailedProduct) -> ()?) {
         let convertCompletion = { (detailedProduct: DetailedProduct) in
             provideCompletion(detailedProduct)
         }
         
-        productDetailsDataConverter.convertProductData(convertCompletion: convertCompletion)
+        productDetailsDataConverter.convertProductData(productId: productId, convertCompletion: convertCompletion)
     }
     
 }

@@ -12,7 +12,7 @@ class ProductDetailsDataConverter {
     
     let productDetailsDataFetcher = ProductDetailsDataFetcher()
     
-    func convertProductData(convertCompletion: @escaping (DetailedProduct) -> ()?) {
+    func convertProductData(productId: Int32, convertCompletion: @escaping (DetailedProduct) -> ()?) {
         
         let fetchCompletion = { (productData: DetailedProductDataModel) in
             
@@ -22,7 +22,7 @@ class ProductDetailsDataConverter {
             
         }
         
-        productDetailsDataFetcher.fetchProduct(fetchCompletion: fetchCompletion)
+        productDetailsDataFetcher.fetchProduct(productId: productId, fetchCompletion: fetchCompletion)
         
     }
 }

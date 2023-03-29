@@ -31,7 +31,7 @@ class ProductDetailsViewController: UIViewController {
         super.viewDidLoad()
         view = productDetailsView
         productDetailsViewModel.delegate = self
-        productDetailsViewModel.getDetailedProduct()
+        productDetailsViewModel.getDetailedProduct(productId: productId)
     }
 
 }
