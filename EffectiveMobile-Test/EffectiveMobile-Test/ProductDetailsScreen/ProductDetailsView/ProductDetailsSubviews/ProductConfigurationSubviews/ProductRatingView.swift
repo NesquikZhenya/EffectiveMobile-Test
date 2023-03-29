@@ -12,35 +12,35 @@ class ProductRatingView: UIView {
     private let firstStarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star")
-        imageView.isHidden = true
+        imageView.alpha = 0.2
         return imageView
     }()
     
     private let secondStarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star")
-        imageView.isHidden = true
+        imageView.alpha = 0.2
         return imageView
     }()
     
     private let thirdStarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star")
-        imageView.isHidden = true
+        imageView.alpha = 0.2
         return imageView
     }()
     
     private let fourthStarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star")
-        imageView.isHidden = true
+        imageView.alpha = 0.2
         return imageView
     }()
     
     private let fithStarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star")
-        imageView.isHidden = true
+        imageView.alpha = 0.2
         return imageView
     }()
 
@@ -132,12 +132,13 @@ extension ProductRatingView {
     
     func configureView(rating: Double) {
         switch lround(rating) {
-        case 1: firstStarImageView.isHidden = false
-        case 2: [firstStarImageView, secondStarImageView].forEach { $0.isHidden = false }
-        case 3: [firstStarImageView, secondStarImageView, thirdStarImageView].forEach { $0.isHidden = false }
-        case 4: [firstStarImageView, secondStarImageView, thirdStarImageView, fourthStarImageView].forEach { $0.isHidden = false }
-        case 5: [firstStarImageView, secondStarImageView, thirdStarImageView, fourthStarImageView, fithStarImageView].forEach { $0.isHidden = false }
+        case 1: firstStarImageView.alpha = 1
+        case 2: [firstStarImageView, secondStarImageView].forEach { $0.alpha = 1 }
+        case 3: [firstStarImageView, secondStarImageView, thirdStarImageView].forEach { $0.alpha = 1 }
+        case 4: [firstStarImageView, secondStarImageView, thirdStarImageView, fourthStarImageView].forEach { $0.alpha = 1 }
+        case 5: [firstStarImageView, secondStarImageView, thirdStarImageView, fourthStarImageView, fithStarImageView].forEach { $0.alpha = 1 }
         default: break
         }
     }
+    
 }

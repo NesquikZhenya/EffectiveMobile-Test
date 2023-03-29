@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5219250329D4AC0800E42EAE /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219250229D4AC0800E42EAE /* ProductDetailsViewModel.swift */; };
+		5219250629D4ACE300E42EAE /* ProductDetailsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219250529D4ACE300E42EAE /* ProductDetailsDataModel.swift */; };
+		5219250829D4ACF700E42EAE /* ProductDetailsDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219250729D4ACF700E42EAE /* ProductDetailsDataFetcher.swift */; };
+		5219250A29D4AD0200E42EAE /* ProductDetailsDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219250929D4AD0200E42EAE /* ProductDetailsDataConverter.swift */; };
+		5219250D29D4AD1500E42EAE /* ProductDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219250C29D4AD1500E42EAE /* ProductDetailsDataProvider.swift */; };
 		522004A5299A7ADA000189DF /* AllProductsDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522004A4299A7ADA000189DF /* AllProductsDataFetcher.swift */; };
 		522004A7299A7D56000189DF /* AllProductsDataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522004A6299A7D56000189DF /* AllProductsDataConverter.swift */; };
 		522004A9299A8288000189DF /* AllProductsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522004A8299A8288000189DF /* AllProductsDataProvider.swift */; };
@@ -49,6 +54,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5219250229D4AC0800E42EAE /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
+		5219250529D4ACE300E42EAE /* ProductDetailsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsDataModel.swift; sourceTree = "<group>"; };
+		5219250729D4ACF700E42EAE /* ProductDetailsDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsDataFetcher.swift; sourceTree = "<group>"; };
+		5219250929D4AD0200E42EAE /* ProductDetailsDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsDataConverter.swift; sourceTree = "<group>"; };
+		5219250C29D4AD1500E42EAE /* ProductDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsDataProvider.swift; sourceTree = "<group>"; };
 		522004A4299A7ADA000189DF /* AllProductsDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsDataFetcher.swift; sourceTree = "<group>"; };
 		522004A6299A7D56000189DF /* AllProductsDataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsDataConverter.swift; sourceTree = "<group>"; };
 		522004A8299A8288000189DF /* AllProductsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProductsDataProvider.swift; sourceTree = "<group>"; };
@@ -103,6 +113,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5219250429D4AC6A00E42EAE /* ProductDetailsDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				5219250529D4ACE300E42EAE /* ProductDetailsDataModel.swift */,
+				5219250729D4ACF700E42EAE /* ProductDetailsDataFetcher.swift */,
+				5219250929D4AD0200E42EAE /* ProductDetailsDataConverter.swift */,
+				5219250C29D4AD1500E42EAE /* ProductDetailsDataProvider.swift */,
+			);
+			path = ProductDetailsDataModel;
+			sourceTree = "<group>";
+		};
 		522004AC299D15A6000189DF /* BestSeller */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,6 +190,7 @@
 		522B39E0293E4864000983DE /* ProductDetailsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				5219250429D4AC6A00E42EAE /* ProductDetailsDataModel */,
 				52F75E6829CB9944005B5303 /* ProductDetailsViewModel */,
 				52F75E6729CB9930005B5303 /* ProductDetailsView */,
 			);
@@ -317,6 +339,7 @@
 		52F75E6829CB9944005B5303 /* ProductDetailsViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5219250229D4AC0800E42EAE /* ProductDetailsViewModel.swift */,
 			);
 			path = ProductDetailsViewModel;
 			sourceTree = "<group>";
@@ -428,10 +451,12 @@
 				52F6039529421CCD007D16D9 /* ViewSetuping.swift in Sources */,
 				52F75E7529CFB127005B5303 /* ProductInfoShopView.swift in Sources */,
 				527F435D2944D7FD00B743C3 /* AllProductsViewModel.swift in Sources */,
+				5219250D29D4AD1500E42EAE /* ProductDetailsDataProvider.swift in Sources */,
 				52F75E6E29CDFC4B005B5303 /* ProductConfigurationView.swift in Sources */,
 				522B39EB293E521E000983DE /* AllProductsView.swift in Sources */,
 				522B39CA293CA356000983DE /* SceneDelegate.swift in Sources */,
 				5258CF7C29C4F96000BE482C /* FavouritesViewModel.swift in Sources */,
+				5219250629D4ACE300E42EAE /* ProductDetailsDataModel.swift in Sources */,
 				522B39E9293E520B000983DE /* AllProductsViewController.swift in Sources */,
 				522B39FC2940B71F000983DE /* SearchView.swift in Sources */,
 				522004A9299A8288000189DF /* AllProductsDataProvider.swift in Sources */,
@@ -439,9 +464,12 @@
 				522004AE299D1602000189DF /* BestSellerView.swift in Sources */,
 				522004A5299A7ADA000189DF /* AllProductsDataFetcher.swift in Sources */,
 				522B39D2293CA356000983DE /* EffectiveMobile_Test.xcdatamodeld in Sources */,
+				5219250829D4ACF700E42EAE /* ProductDetailsDataFetcher.swift in Sources */,
+				5219250329D4AC0800E42EAE /* ProductDetailsViewModel.swift in Sources */,
 				5258CF75299FE23B00BE482C /* FavouritesView.swift in Sources */,
 				527F43562943382700B743C3 /* HotSalesPhoneView.swift in Sources */,
 				522004A7299A7D56000189DF /* AllProductsDataConverter.swift in Sources */,
+				5219250A29D4AD0200E42EAE /* ProductDetailsDataConverter.swift in Sources */,
 				522004B0299D3EC4000189DF /* BestSellerCollectionViewCell.swift in Sources */,
 				52F603882940DA91007D16D9 /* CategoriesData.swift in Sources */,
 				52F75E6A29CB9EF5005B5303 /* ProductDetailsView.swift in Sources */,

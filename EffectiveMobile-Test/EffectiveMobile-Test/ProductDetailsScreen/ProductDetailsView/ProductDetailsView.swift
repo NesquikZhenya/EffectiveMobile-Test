@@ -18,7 +18,7 @@ class ProductDetailsView: UIView {
         return scrollView
     }()
     
-    private let productConfigurationView: UIView = {
+    private let productConfigurationView: ProductConfigurationView = {
         let view = ProductConfigurationView()
         view.layer.cornerRadius = 30
         view.layer.shadowColor = UIColor(red: 0.298, green: 0.372, blue: 0.562, alpha: 0.1).cgColor
@@ -84,3 +84,10 @@ extension ProductDetailsView: ViewSetuping {
     
 }
 
+//MARK: Configurating View
+
+extension ProductDetailsView {
+    func initializeView(detailedProduct: DetailedProduct) {
+        self.productConfigurationView.initializeView(detailedProduct: detailedProduct)
+    }
+}

@@ -30,9 +30,8 @@ class ProductConfigurationView: UIView {
         return imageView
     }()
     
-    private let productRatingView: UIView = {
+    private let productRatingView: ProductRatingView = {
         let view = ProductRatingView()
-        view.configureView(rating: 3.5)
         return view
     }()
     
@@ -230,4 +229,13 @@ extension ProductConfigurationView: ViewSetuping {
     }
 
 }
+
+//MARK: Configurating View
+
+extension ProductConfigurationView {
+    func initializeView(detailedProduct: DetailedProduct) {
+        productRatingView.configureView(rating: detailedProduct.rating)
+    }
+}
+
 

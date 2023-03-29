@@ -256,7 +256,7 @@ extension AllProductsView: ViewSetuping {
     
 }
 
-//MARK: Adding HotSalesView
+//MARK: Configurating View
 
 extension AllProductsView {
     

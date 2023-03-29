@@ -17,7 +17,7 @@ class AllProductsViewController: UIViewController {
     
     private var allProductsViewModel: AllProductsViewModel
         
-    let allProductsView = AllProductsView()
+    private let allProductsView = AllProductsView()
         
     init(allProductsViewModel: AllProductsViewModel = AllProductsViewModel()) {
         self.allProductsViewModel = allProductsViewModel
@@ -40,11 +40,10 @@ class AllProductsViewController: UIViewController {
         allProductsView.categoriesCollectionView.dataSource = self
         allProductsView.categoriesCollectionView.delegate = self
         allProductsView.categoriesCollectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: "CategoriesCollectionViewCell")
-        allProductsViewModel.getHotSalesPhones()
-        allProductsViewModel.getBestSellerPhones()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        allProductsViewModel.getHotSalesPhones()
         allProductsViewModel.getBestSellerPhones()
     }
     
@@ -76,8 +75,7 @@ extension AllProductsViewController: FavouritesUpdating {
 
 extension AllProductsViewController: ProductDetailsShowing {
     func showViewController(for productId: Int32) {
-        self.tabBarController?.navigationController?.pushViewController(ProductDetailsViewController(), animated: true)
-//        self.navigationController?.pushViewController(ProductDetailsViewController(), animated: true)
+        self.tabBarController?.navigationController?.pushViewController(ProductDetailsViewController(productId: productId), animated: true)
     }
 }
 
