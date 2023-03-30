@@ -8,8 +8,6 @@
 import UIKit
 
 final class ProductDetailsView: UIView {
-
-//    private var product: BestSellerPhone
     
     private let productImagesScrollView: UIScrollView = {
         let scrollView = UIScrollView()

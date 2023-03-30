@@ -15,14 +15,14 @@ final class ProductConfigurationView: UIView {
         label.font = UIFont(name: "MarkPro-Medium", size: 24)
         return label
     }()
-    
+
     private let favouriteBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
         view.backgroundColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
         return view
     }()
-    
+
     private let favouriteImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "favourite")
@@ -38,43 +38,32 @@ final class ProductConfigurationView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
-        stackView.addArrangedSubview(productInfoShopLabel)
-        stackView.addArrangedSubview(productInfoDetailsLabel)
-        stackView.addArrangedSubview(productInfoFeaturesLabel)
+        stackView.addArrangedSubview(createProductInfoLabel(title: "Shop"))
+        stackView.addArrangedSubview(createProductInfoLabel(title: "Details"))
+        stackView.addArrangedSubview(createProductInfoLabel(title: "Features"))
+        stackView.arrangedSubviews.forEach {
+            let infoGesture = UITapGestureRecognizer(target: self, action: #selector(infoDidTap))
+            $0.addGestureRecognizer(infoGesture)
+        }
         return stackView
     }()
     
-    private let productInfoShopLabel: UILabel = {
+    private func createProductInfoLabel(title: String) -> UILabel {
         let label = UILabel()
-        label.text = "Shop"
+        label.text = title
         label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
         label.font = UIFont(name: "MarkPro-Bold", size: 20)
+        label.isUserInteractionEnabled = true
         return label
-    }()
-    
-    private let productInfoDetailsLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Details"
-        label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
-        label.font = UIFont(name: "MarkPro-Regular", size: 20)
-        return label
-    }()
-    
-    private let productInfoFeaturesLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Features"
-        label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
-        label.font = UIFont(name: "MarkPro-Regular", size: 20)
-        return label
-    }()
+    }
     
     private let underlineView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(red: 1, green: 0.429, blue: 0.304, alpha: 1)
         return view
     }()
-    
-    private let productInfoShopView: UIView = {
+
+    private let productInfoShopView: ProductInfoShopView = {
         let view = ProductInfoShopView()
         return view
     }()
@@ -93,7 +82,6 @@ final class ProductConfigurationView: UIView {
         let view = CartButtonView()
         return view
     }()
-        
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -101,7 +89,6 @@ final class ProductConfigurationView: UIView {
         loadViews()
         setupConstraints()
     }
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -130,15 +117,15 @@ extension ProductConfigurationView: ViewSetuping {
     
     func setupConstraints() {
         configureTitleLabelConstraints()
-        configureFavouriteBackgroundView()
-        configureFavouriteImageView()
-        configureProductRatingView()
-        configureProductInfoLabelsStackView()
-        configureUnderlineView()
-        configureProductInfoShopView()
-        configureProductInfoDetailsView()
-        configureProductInfoFeaturesView()
-        configureCartButtonView()
+        configureFavouriteBackgroundViewConstraints()
+        configureFavouriteImageViewConstraints()
+        configureProductRatingViewConstraints()
+        configureProductInfoLabelsStackViewConstraints()
+        configureUnderlineViewConstraints()
+        configureProductInfoShopViewConstraints()
+        configureProductInfoDetailsViewConstraints()
+        configureProductInfoFeaturesViewConstraints()
+        configureCartButtonViewConstraints()
         
         [
             titleLabel,
@@ -160,8 +147,8 @@ extension ProductConfigurationView: ViewSetuping {
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 38)
         ].forEach { $0.isActive = true }
     }
-    
-    private func configureFavouriteBackgroundView() {
+
+    private func configureFavouriteBackgroundViewConstraints() {
         [
             favouriteBackgroundView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             favouriteBackgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -38),
@@ -169,63 +156,65 @@ extension ProductConfigurationView: ViewSetuping {
             favouriteBackgroundView.widthAnchor.constraint(equalToConstant: 38)
         ].forEach { $0.isActive = true }
     }
-    
-    private func configureFavouriteImageView() {
+
+    private func configureFavouriteImageViewConstraints() {
         [
             favouriteImageView.centerYAnchor.constraint(equalTo: favouriteBackgroundView.centerYAnchor),
             favouriteImageView.centerXAnchor.constraint(equalTo: favouriteBackgroundView.centerXAnchor),
         ].forEach { $0.isActive = true }
     }
-    
-    private func configureProductRatingView() {
+
+    private func configureProductRatingViewConstraints() {
         [
             productRatingView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             productRatingView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 38)
         ].forEach { $0.isActive = true }
     }
-    
-    private func configureProductInfoLabelsStackView() {
+
+    private func configureProductInfoLabelsStackViewConstraints() {
         [
             productInfoLabelsStackView.topAnchor.constraint(equalTo: productRatingView.bottomAnchor, constant: 32),
             productInfoLabelsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
             productInfoLabelsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32)
         ].forEach { $0.isActive = true }
     }
-    
-    private func configureUnderlineView() {
+
+    private func configureUnderlineViewConstraints() {
         [
-            underlineView.topAnchor.constraint(equalTo: productInfoShopLabel.bottomAnchor, constant: 8),
-            underlineView.centerXAnchor.constraint(equalTo: productInfoShopLabel.centerXAnchor),
+            underlineView.topAnchor.constraint(equalTo: productInfoLabelsStackView.arrangedSubviews[0].bottomAnchor, constant: 8),
+            underlineView.centerXAnchor.constraint(equalTo: productInfoLabelsStackView.arrangedSubviews[0].centerXAnchor),
             underlineView.heightAnchor.constraint(equalToConstant: 2),
             underlineView.widthAnchor.constraint(equalToConstant: 80)
         ].forEach { $0.isActive = true }
     }
-    
-    private func configureProductInfoShopView() {
+
+    private func configureProductInfoShopViewConstraints() {
         [
-            underlineView.topAnchor.constraint(equalTo: productInfoShopLabel.bottomAnchor, constant: 8),
-            underlineView.centerXAnchor.constraint(equalTo: productInfoShopLabel.centerXAnchor)
+            productInfoShopView.topAnchor.constraint(equalTo: underlineView.bottomAnchor),
+            productInfoShopView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            productInfoShopView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ].forEach { $0.isActive = true }
     }
-    
-    private func configureProductInfoDetailsView() {
+
+    private func configureProductInfoDetailsViewConstraints() {
         [
-            underlineView.topAnchor.constraint(equalTo: productInfoShopLabel.bottomAnchor, constant: 8),
-            underlineView.centerXAnchor.constraint(equalTo: productInfoShopLabel.centerXAnchor)
+//            underlineView.topAnchor.constraint(equalTo: productInfoShopLabel.bottomAnchor, constant: 8),
+            underlineView.centerXAnchor.constraint(equalTo: productInfoLabelsStackView.arrangedSubviews[0].centerXAnchor)
         ].forEach { $0.isActive = true }
     }
-    
-    private func configureProductInfoFeaturesView() {
+
+    private func configureProductInfoFeaturesViewConstraints() {
         [
-            underlineView.topAnchor.constraint(equalTo: productInfoShopLabel.bottomAnchor, constant: 8),
-            underlineView.centerXAnchor.constraint(equalTo: productInfoShopLabel.centerXAnchor)
+//            underlineView.topAnchor.constraint(equalTo: productInfoShopLabel.bottomAnchor, constant: 8),
+            underlineView.centerXAnchor.constraint(equalTo: productInfoLabelsStackView.arrangedSubviews[0].centerXAnchor)
         ].forEach { $0.isActive = true }
     }
-    
-    private func configureCartButtonView() {
+
+    private func configureCartButtonViewConstraints() {
         [
-            underlineView.topAnchor.constraint(equalTo: productInfoShopLabel.bottomAnchor, constant: 8),
-            underlineView.centerXAnchor.constraint(equalTo: productInfoShopLabel.centerXAnchor)
+            cartButtonView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+            cartButtonView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
+            cartButtonView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30)
         ].forEach { $0.isActive = true }
     }
 
@@ -234,10 +223,12 @@ extension ProductConfigurationView: ViewSetuping {
 //MARK: Configurating View
 
 extension ProductConfigurationView {
+    
     func initializeView(detailedProduct: DetailedProduct) {
         titleLabel.text = detailedProduct.title
         favouriteImageView.image = heartImage(isFavourite: detailedProduct.isFavorites)
-        productRatingView.configureView(rating: detailedProduct.rating)
+        productRatingView.initializeView(rating: detailedProduct.rating)
+        productInfoShopView.initializeView(detailedProduct: detailedProduct)
     }
     
     private func heartImage(isFavourite: Bool) -> UIImage? {
@@ -249,4 +240,10 @@ extension ProductConfigurationView {
     }
 }
 
-
+extension ProductConfigurationView {
+    
+    @objc private func infoDidTap() {
+        print("test")
+    }
+    
+}

@@ -130,7 +130,7 @@ extension ProductRatingView: ViewSetuping {
 
 extension ProductRatingView {
     
-    func configureView(rating: Double) {
+    func initializeView(rating: Double) {
         switch lround(rating) {
         case 1: firstStarImageView.alpha = 1
         case 2: [firstStarImageView, secondStarImageView].forEach { $0.alpha = 1 }

@@ -78,18 +78,18 @@ extension AllProductsViewController: ProductDetailsShowing {
         self.tabBarController?.navigationController?.pushViewController(ProductDetailsViewController(productId: productId), animated: true)
     }
 }
-
-//MARK: CollectionView Configuration
-
-extension AllProductsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    //MARK: CollectionView Configuration
+    
+extension AllProductsViewController: UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return allProductsViewModel.categories.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = allProductsView.categoriesCollectionView.dequeueReusableCell(withReuseIdentifier: "CategoriesCollectionViewCell", for: indexPath) as? CategoriesCollectionViewCell {
-            cell.configureCategory(name: allProductsViewModel.categories[indexPath.row].name, imageName: allProductsViewModel.categories[indexPath.row].imageName, isSelected: allProductsViewModel.categories[indexPath.row].isSelected)
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) ->UICollectionViewCell {
+        if let cell = allProductsView.categoriesCollectionView.dequeueReusableCell(withReuseIdentifier:"CategoriesCollectionViewCell", for: indexPath) as? CategoriesCollectionViewCell {
+            cell.configureCategory(name: allProductsViewModel.categories[indexPath.row].name, imageName:allProductsViewModel.categories[indexPath.row].imageName, isSelected:allProductsViewModel.categories[indexPath.row].isSelected)
             return cell
         }
         else {
@@ -102,15 +102,15 @@ extension AllProductsViewController: UICollectionViewDataSource, UICollectionVie
         collectionView.reloadData()
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 71, height: 93)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 23
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 23, bottom: 0, right: 0)
     }
     
