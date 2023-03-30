@@ -69,13 +69,6 @@ final class ProductInfoShopView: UIView {
         stackView.axis = .horizontal
         stackView.distribution = .equalSpacing
         stackView.spacing = 12
-        stackView.addArrangedSubview(createColorView())
-        stackView.addArrangedSubview(createColorView())
-        stackView.addArrangedSubview(createColorView())
-        stackView.arrangedSubviews.forEach {
-            let colorGesture = UITapGestureRecognizer(target: self, action: #selector(colorDidTap))
-            $0.addGestureRecognizer(colorGesture)
-        }
         return stackView
     }()
 
@@ -211,9 +204,9 @@ extension ProductInfoShopView {
     private func createColorButton(color: UIColor) -> UIButton {
         let button = UIButton()
         button.backgroundColor = color
-//        button.layer.cornerRadius = 20
         button.heightAnchor.constraint(equalToConstant: 40).isActive = true
         button.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(colorDidTap), for: .touchUpInside)
         return button
     }
