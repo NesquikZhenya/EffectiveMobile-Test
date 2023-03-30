@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AllProductsDataFetcher {
+final class AllProductsDataFetcher {
     
     func fetchAllProductsData(fetchCompletion: @escaping (AllProductsDataModel) -> ()?) {
         let allProductsURL = URL(string: "https://mocki.io/v1/01778141-24c0-4344-8b23-4b79130950e3")!

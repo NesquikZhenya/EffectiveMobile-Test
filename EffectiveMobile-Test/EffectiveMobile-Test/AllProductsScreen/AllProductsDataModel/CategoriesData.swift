@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CategoriesData {
+final class CategoriesData {
     
     static var shared = CategoriesData()
     

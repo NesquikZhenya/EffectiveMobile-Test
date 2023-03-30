@@ -13,7 +13,7 @@ protocol ProductDetailsDataProviding {
 
 struct ProductDetailsDataProvider: ProductDetailsDataProviding {
     
-    let productDetailsDataConverter = ProductDetailsDataConverter()
+    private let productDetailsDataConverter = ProductDetailsDataConverter()
     
     func provideProductDetailsData(productId: Int32, provideCompletion: @escaping (DetailedProduct) -> ()?) {
         let convertCompletion = { (detailedProduct: DetailedProduct) in

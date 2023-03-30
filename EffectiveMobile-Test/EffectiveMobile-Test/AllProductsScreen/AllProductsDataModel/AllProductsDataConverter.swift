@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class AllProductsDataConverter {
+final class AllProductsDataConverter {
     
-    let allProductsDataFetcher = AllProductsDataFetcher()
+    private let allProductsDataFetcher = AllProductsDataFetcher()
         
     func convertHotSalesPhonesData(convertCompletion: @escaping ([HotSalesPhone]) -> ()?) {
         

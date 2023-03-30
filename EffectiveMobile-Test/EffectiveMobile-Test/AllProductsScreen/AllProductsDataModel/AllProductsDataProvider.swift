@@ -14,7 +14,7 @@ protocol AllProductsDataProviding {
 
 struct AllProductsDataProvider: AllProductsDataProviding { 
     
-    let allProductsDataConverter = AllProductsDataConverter()
+    private let allProductsDataConverter = AllProductsDataConverter()
     
     func provideHotSalesPhonesData(provideCompletion: @escaping ([HotSalesPhone]) -> ()?) {
         

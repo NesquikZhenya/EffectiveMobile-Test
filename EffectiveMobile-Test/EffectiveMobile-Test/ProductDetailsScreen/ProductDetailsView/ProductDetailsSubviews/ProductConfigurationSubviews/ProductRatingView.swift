@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductRatingView: UIView {
+final class ProductRatingView: UIView {
     
     private let firstStarImageView: UIImageView = {
         let imageView = UIImageView()

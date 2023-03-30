@@ -2,8 +2,8 @@
   "CPU": "Exynos 990",
   "camera": "108 + 12 mp",
   "capacity": [
-    "126",
-    "252"
+    "128",
+    "256"
   ],
   "color": [
     "#772D03",
@@ -16,7 +16,7 @@
     "https://d3m9l0v76dty0.cloudfront.net/system/photos/9247354/large/158fd31605dc8ba84253f70e407bc919.jpg"
   ],
   "isFavorites": true,
-  "price": 1500,
+  "price": 1047,
   "rating": 4.5,
   "sd": "256 GB",
   "ssd": "8 GB",

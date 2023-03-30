@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CartButtonView: UIView {
+final class CartButtonView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.

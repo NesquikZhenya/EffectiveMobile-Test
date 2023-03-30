@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductDetailsView: UIView {
+final class ProductDetailsView: UIView {
 
 //    private var product: BestSellerPhone
     

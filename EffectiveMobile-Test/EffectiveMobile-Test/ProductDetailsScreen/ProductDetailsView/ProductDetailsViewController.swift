@@ -11,7 +11,7 @@ protocol ProductDetailsViewModelListening: AnyObject {
     func initializeView(detailedProduct: DetailedProduct)
 }
 
-class ProductDetailsViewController: UIViewController {
+final class ProductDetailsViewController: UIViewController {
     
     private var productId: Int32
     private let productDetailsView = ProductDetailsView()

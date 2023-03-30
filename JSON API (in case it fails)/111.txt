@@ -1,0 +1,25 @@
+{
+  "CPU": "Exynos 980",
+  "camera": "54 + 12 mp",
+  "capacity": [
+    "128",
+    "256",
+    "512"
+  ],
+  "color": [
+    "#000000",
+    "#00FFFF"
+  ],
+  "id": "111",
+  "images": [
+    "https://www.pcworld.com/wp-content/uploads/2022/12/note-20-s20-ultra-back-100854197-orig-1.jpg?quality=50&strip=all",
+    "https://img.zap.co.il/pics/0/7/3/5/54505370c.gif",
+    "https://www.trustedreviews.com/wp-content/uploads/sites/54/2020/02/s20ultracamera-920x613.jpg"
+  ],
+  "isFavorites": true,
+  "price": 1047,
+  "rating": 4.2,
+  "sd": "256 GB",
+  "ssd": "8 GB",
+  "title": "Galaxy S20 Ultra"
+}

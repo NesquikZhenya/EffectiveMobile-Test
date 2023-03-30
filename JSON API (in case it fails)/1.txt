@@ -1,0 +1,27 @@
+{
+  "CPU": "A14 Bionic",
+  "camera": "12 + 12 mp",
+  "capacity": [
+    "64",
+    "128",
+    "256"
+
+  ],
+  "color": [
+    "#121212",
+    "#F3F3F3",
+    "#355089"
+  ],
+  "id": "1",
+  "images": [
+    "https://images.macrumors.com/article-new/2019/10/iphone12black.jpg",
+    "https://i.insider.com/631f69c4e8b500001850d7be?width=700",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYJQcWeM4nKsMzvk-VuOfUH5EWO17p-9-qDrdHxaVBdZmgz7LATU7NkgnDFatWm9wA5FM&usqp=CAU"
+  ],
+  "isFavorites": false,
+  "price": 1200,
+  "rating": 4.6,
+  "sd": "No",
+  "ssd": "4 GB",
+  "title": "iPhone 12"
+}

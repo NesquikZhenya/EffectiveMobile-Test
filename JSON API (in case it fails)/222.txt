@@ -1,0 +1,25 @@
+{
+  "CPU": "Snapdragon 710",
+  "camera": "100 + 3x8 mp",
+  "capacity": [
+    "128",
+    "256"
+  ],
+  "color": [
+    "#659BF3",
+    "#262B32",
+    "#53E6AA"
+  ],
+  "id": "222",
+  "images": [
+    "https://www.mi-il.co.il/images/site/products/e5ffb8b6-047a-4a3e-913e-0f1e35d4ddde.jpg",
+    "https://www.mi-il.co.il/images/site/products/28c21763-718f-4fa8-9468-d29c1b3a5990.jpg",
+    "https://mobile-review.com/articles/2020/image/press-xiaomi-mi10/scr/503.jpg"
+  ],
+  "isFavorites": false,
+  "price": 300,
+  "rating": 4.1,
+  "sd": "256 GB",
+  "ssd": "8 GB",
+  "title": "Xiaomi Mi 10 Pro"
+}

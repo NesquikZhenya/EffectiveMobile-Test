@@ -1,0 +1,24 @@
+{
+  "CPU": "Snapdragon 778",
+  "camera": "100 + 8 + 2 mp",
+  "capacity": [
+    "256"
+  ],
+  "color": [
+    "#3DD6E0",
+    "#131785",
+    "#DFE2BE"
+  ],
+  "id": "444",
+  "images": [
+    "https://motorolaus.vtexassets.com/arquivos/ids/162356/Motorola-edge-pdp-kv-render-MoonlessNight-1-pyfffdtt.png?v=637963708038500000",
+    "https://img.zap.co.il/pics/3/6/0/6/70646063c.gif",
+    "https://d3m9l0v76dty0.cloudfront.net/system/photos/9789886/original/ff06e8d2c2f9c07cf8027472280e5c24.jpg"
+  ],
+  "isFavorites": false,
+  "price": 300,
+  "rating": 3.4,
+  "sd": "No",
+  "ssd": "8 GB",
+  "title": "Motorola One Edge"
+}

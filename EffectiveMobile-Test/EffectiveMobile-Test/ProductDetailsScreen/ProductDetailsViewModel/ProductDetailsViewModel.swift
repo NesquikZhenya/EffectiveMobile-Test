@@ -18,7 +18,6 @@ final class ProductDetailsViewModel {
     weak var delegate: ProductDetailsViewModelListening?
     
     private var productDetailsDataProvider: ProductDetailsDataProviding
-//    private var detailedProduct: DetailedProduct?
     
     init(productDetailsDataProvider: ProductDetailsDataProviding = ProductDetailsDataProvider()) {
         self.productDetailsDataProvider = productDetailsDataProvider

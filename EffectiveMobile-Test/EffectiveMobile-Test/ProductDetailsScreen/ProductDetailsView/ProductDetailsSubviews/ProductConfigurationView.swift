@@ -7,11 +7,10 @@
 
 import UIKit
 
-class ProductConfigurationView: UIView {
+final class ProductConfigurationView: UIView {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Galaxy Note 20 Ultra"
         label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
         label.font = UIFont(name: "MarkPro-Medium", size: 24)
         return label
@@ -196,7 +195,9 @@ extension ProductConfigurationView: ViewSetuping {
     private func configureUnderlineView() {
         [
             underlineView.topAnchor.constraint(equalTo: productInfoShopLabel.bottomAnchor, constant: 8),
-            underlineView.centerXAnchor.constraint(equalTo: productInfoShopLabel.centerXAnchor)
+            underlineView.centerXAnchor.constraint(equalTo: productInfoShopLabel.centerXAnchor),
+            underlineView.heightAnchor.constraint(equalToConstant: 2),
+            underlineView.widthAnchor.constraint(equalToConstant: 80)
         ].forEach { $0.isActive = true }
     }
     
@@ -234,7 +235,17 @@ extension ProductConfigurationView: ViewSetuping {
 
 extension ProductConfigurationView {
     func initializeView(detailedProduct: DetailedProduct) {
+        titleLabel.text = detailedProduct.title
+        favouriteImageView.image = heartImage(isFavourite: detailedProduct.isFavorites)
         productRatingView.configureView(rating: detailedProduct.rating)
+    }
+    
+    private func heartImage(isFavourite: Bool) -> UIImage? {
+        if isFavourite {
+            return UIImage(named: "favourite")
+        } else {
+            return UIImage(named: "notFavourite")
+        }
     }
 }
 

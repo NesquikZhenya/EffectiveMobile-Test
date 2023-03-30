@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class ProductDetailsDataConverter {
+final class ProductDetailsDataConverter {
     
-    let productDetailsDataFetcher = ProductDetailsDataFetcher()
+    private let productDetailsDataFetcher = ProductDetailsDataFetcher()
     
     func convertProductData(productId: Int32, convertCompletion: @escaping (DetailedProduct) -> ()?) {
         

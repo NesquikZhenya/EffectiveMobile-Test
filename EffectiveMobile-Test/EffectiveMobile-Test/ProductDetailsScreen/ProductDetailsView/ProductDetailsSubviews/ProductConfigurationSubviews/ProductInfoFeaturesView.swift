@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProductInfoFeaturesView: UIView {
+final class ProductInfoFeaturesView: UIView {
 
     /*
     // Only override draw() if you perform custom drawing.

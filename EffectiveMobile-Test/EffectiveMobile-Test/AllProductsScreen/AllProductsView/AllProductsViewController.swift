@@ -13,7 +13,7 @@ protocol AllProductsViewModelListening: AnyObject {
 }
 
 
-class AllProductsViewController: UIViewController {
+final class AllProductsViewController: UIViewController {
     
     private var allProductsViewModel: AllProductsViewModel
         
