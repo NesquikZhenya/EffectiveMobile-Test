@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5203C6A829D7867A0036D4BC /* ProductInfoShopColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203C6A729D7867A0036D4BC /* ProductInfoShopColorButton.swift */; };
+		5203C6AD29D78E580036D4BC /* ProductInfoShopCapacityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203C6AC29D78E580036D4BC /* ProductInfoShopCapacityButton.swift */; };
 		5219250329D4AC0800E42EAE /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219250229D4AC0800E42EAE /* ProductDetailsViewModel.swift */; };
 		5219250629D4ACE300E42EAE /* ProductDetailsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219250529D4ACE300E42EAE /* ProductDetailsDataModel.swift */; };
 		5219250829D4ACF700E42EAE /* ProductDetailsDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219250729D4ACF700E42EAE /* ProductDetailsDataFetcher.swift */; };
@@ -54,6 +56,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5203C6A729D7867A0036D4BC /* ProductInfoShopColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoShopColorButton.swift; sourceTree = "<group>"; };
+		5203C6AC29D78E580036D4BC /* ProductInfoShopCapacityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoShopCapacityButton.swift; sourceTree = "<group>"; };
 		5219250229D4AC0800E42EAE /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
 		5219250529D4ACE300E42EAE /* ProductDetailsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsDataModel.swift; sourceTree = "<group>"; };
 		5219250729D4ACF700E42EAE /* ProductDetailsDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsDataFetcher.swift; sourceTree = "<group>"; };
@@ -113,6 +117,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5203C6A929D787760036D4BC /* ProductInfoShopView */ = {
+			isa = PBXGroup;
+			children = (
+				52F75E7429CFB127005B5303 /* ProductInfoShopView.swift */,
+				5203C6A729D7867A0036D4BC /* ProductInfoShopColorButton.swift */,
+				5203C6AC29D78E580036D4BC /* ProductInfoShopCapacityButton.swift */,
+			);
+			path = ProductInfoShopView;
+			sourceTree = "<group>";
+		};
 		5219250429D4AC6A00E42EAE /* ProductDetailsDataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,8 +370,8 @@
 		52F75E7C29CFB173005B5303 /* ProductConfigurationSubviews */ = {
 			isa = PBXGroup;
 			children = (
+				5203C6A929D787760036D4BC /* ProductInfoShopView */,
 				52F75E6F29CE00EC005B5303 /* ProductRatingView.swift */,
-				52F75E7429CFB127005B5303 /* ProductInfoShopView.swift */,
 				52F75E7629CFB13C005B5303 /* ProductInfoDetailsView.swift */,
 				52F75E7829CFB14D005B5303 /* ProductInfoFeaturesView.swift */,
 				52F75E7A29CFB15C005B5303 /* CartButtonView.swift */,
@@ -451,6 +465,7 @@
 				52F6039529421CCD007D16D9 /* ViewSetuping.swift in Sources */,
 				52F75E7529CFB127005B5303 /* ProductInfoShopView.swift in Sources */,
 				527F435D2944D7FD00B743C3 /* AllProductsViewModel.swift in Sources */,
+				5203C6A829D7867A0036D4BC /* ProductInfoShopColorButton.swift in Sources */,
 				5219250D29D4AD1500E42EAE /* ProductDetailsDataProvider.swift in Sources */,
 				52F75E6E29CDFC4B005B5303 /* ProductConfigurationView.swift in Sources */,
 				522B39EB293E521E000983DE /* AllProductsView.swift in Sources */,
@@ -460,6 +475,7 @@
 				522B39E9293E520B000983DE /* AllProductsViewController.swift in Sources */,
 				522B39FC2940B71F000983DE /* SearchView.swift in Sources */,
 				522004A9299A8288000189DF /* AllProductsDataProvider.swift in Sources */,
+				5203C6AD29D78E580036D4BC /* ProductInfoShopCapacityButton.swift in Sources */,
 				5258CF73299FE21A00BE482C /* FavouritesViewController.swift in Sources */,
 				522004AE299D1602000189DF /* BestSellerView.swift in Sources */,
 				522004A5299A7ADA000189DF /* AllProductsDataFetcher.swift in Sources */,

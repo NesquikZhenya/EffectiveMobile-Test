@@ -71,15 +71,32 @@ final class ProductInfoShopView: UIView {
         stackView.spacing = 12
         return stackView
     }()
+    
+    private let checkImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "check")
+        return imageView
+    }()
+    
+    lazy var checkX0Constraint = checkImageView.centerXAnchor.constraint(equalTo: colorsStackView.arrangedSubviews[0].centerXAnchor)
+    
+    lazy var checkY0Constraint = checkImageView.centerYAnchor.constraint(equalTo: colorsStackView.arrangedSubviews[0].centerYAnchor)
 
-    private func createColorView() -> UIView {
-        let view = UIView()
-        view.layer.cornerRadius = 20
-        view.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        view.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        view.isUserInteractionEnabled = true
-        return view
-    }
+    lazy var checkX1Constraint = checkImageView.centerXAnchor.constraint(equalTo: colorsStackView.arrangedSubviews[0].centerXAnchor)
+    
+    lazy var checkY1Constraint = checkImageView.centerYAnchor.constraint(equalTo: colorsStackView.arrangedSubviews[0].centerYAnchor)
+    
+    lazy var checkX2Constraint = checkImageView.centerXAnchor.constraint(equalTo: colorsStackView.arrangedSubviews[0].centerXAnchor)
+    
+    lazy var checkY2Constraint = checkImageView.centerYAnchor.constraint(equalTo: colorsStackView.arrangedSubviews[0].centerYAnchor)
+    
+    lazy var capacityStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .equalSpacing
+        stackView.spacing = 8
+        return stackView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -106,7 +123,9 @@ extension ProductInfoShopView: ViewSetuping {
             ramLabel,
             sdLabel,
             colorAndCapacityLabel,
-            colorsStackView
+            colorsStackView,
+            checkImageView,
+            capacityStackView
         ].forEach {self.addSubview($0)}
     }
     
@@ -118,7 +137,8 @@ extension ProductInfoShopView: ViewSetuping {
         configureSdLabelConstraints()
         configureColorAndCapacityLabelConstraints()
         configureColorsStackViewConstraints()
-        
+        configureCapacityStackViewConstraints()
+
         [
             imagesStackView,
             cpuLabel,
@@ -126,7 +146,9 @@ extension ProductInfoShopView: ViewSetuping {
             ramLabel,
             sdLabel,
             colorAndCapacityLabel,
-            colorsStackView
+            colorsStackView,
+            checkImageView,
+            capacityStackView
         ].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
     }
     
@@ -178,42 +200,102 @@ extension ProductInfoShopView: ViewSetuping {
             colorsStackView.topAnchor.constraint(equalTo: colorAndCapacityLabel.bottomAnchor, constant: 14),
             colorsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
             colorsStackView.trailingAnchor.constraint(lessThanOrEqualTo: self.centerXAnchor)
-//            colorsStackView.heightAnchor.constraint(equalToConstant: 40)
         ].forEach { $0.isActive = true }
     }
-
+    
+    private func configureCheckImageViewConstraints(id: Int) {
+        [
+            checkX0Constraint,
+            checkY0Constraint
+        ].forEach { $0.isActive = true }
+    }
+    
+    private func configureCapacityStackViewConstraints() {
+        [
+            capacityStackView.centerYAnchor.constraint(equalTo: colorsStackView.centerYAnchor),
+            capacityStackView.leadingAnchor.constraint(equalTo: colorsStackView.trailingAnchor, constant: 30),
+            capacityStackView.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -20)
+        ].forEach { $0.isActive = true }
+    }
 }
 
 extension ProductInfoShopView {
     
     func initializeView(detailedProduct: DetailedProduct) {
-        print(13)
         cpuLabel.text = detailedProduct.CPU
         cameraLabel.text = detailedProduct.camera
         ramLabel.text = detailedProduct.ssd
         sdLabel.text = detailedProduct.sd
         configureColorStackView(colors: detailedProduct.colors)
+        configureCapacityStackView(capacity: detailedProduct.capacity)
     }
     
     private func configureColorStackView(colors: [UIColor]) {
+        var i: Int = 0
         for color in colors {
-            colorsStackView.addArrangedSubview(createColorButton(color: color))
+            colorsStackView.addArrangedSubview(createColorButton(id: i,color: color))
+            i += 1
         }
+        configureCheckImageViewConstraints(id: 0)
     }
     
-    private func createColorButton(color: UIColor) -> UIButton {
-        let button = UIButton()
-        button.backgroundColor = color
-        button.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        button.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        button.layer.cornerRadius = 20
+    private func configureCapacityStackView(capacity: [String]) {
+        var i: Int = 0
+        for cap in capacity {
+            capacityStackView.addArrangedSubview(createCapacityButton(id: i, capacity: cap))
+            i += 1
+        }
+    }
+        
+    private func createColorButton(id: Int, color: UIColor) -> ProductInfoShopColorButton {
+        let button = ProductInfoShopColorButton()
+        button.configureButton(id: id, color: color)
         button.addTarget(self, action: #selector(colorDidTap), for: .touchUpInside)
         return button
     }
     
-    @objc private func colorDidTap() {
-        print("234")
+    private func createCapacityButton(id: Int, capacity: String) -> ProductInfoShopCapacityButton {
+        let button = ProductInfoShopCapacityButton()
+        button.configureButton(id: id, capacity: capacity)
+        button.addTarget(self, action: #selector(capacityDidTap), for: .touchUpInside)
+        return button
     }
+    
+    @objc private func colorDidTap(_ sender: ProductInfoShopColorButton) {
+        print("buttonDidTap")
+//        switch sender.id {
+//        case 1:
+//            print(1)
+//            checkX0Constraint.isActive = false
+//            checkY0Constraint.isActive = false
+//            checkX1Constraint.isActive = true
+//            checkY1Constraint.isActive = true
+//            checkX2Constraint.isActive = false
+//            checkY2Constraint.isActive = false
+//        case 2:
+//            print(2)
+//            checkX0Constraint.isActive = false
+//            checkY0Constraint.isActive = false
+//            checkX1Constraint.isActive = false
+//            checkY1Constraint.isActive = false
+//            checkX2Constraint.isActive = true
+//            checkY2Constraint.isActive = true
+//        default:
+//            print(0)
+//            checkX0Constraint.isActive = true
+//            checkY0Constraint.isActive = true
+//            checkX1Constraint.isActive = false
+//            checkY1Constraint.isActive = false
+//            checkX2Constraint.isActive = true
+//            checkY2Constraint.isActive = true
+//        }
+//        self.layoutIfNeeded()
+    }
+    
+    @objc private func capacityDidTap(_ sender: ProductInfoShopCapacityButton) {
+        print("asdfasf")
+    }
+
     
 }
 
