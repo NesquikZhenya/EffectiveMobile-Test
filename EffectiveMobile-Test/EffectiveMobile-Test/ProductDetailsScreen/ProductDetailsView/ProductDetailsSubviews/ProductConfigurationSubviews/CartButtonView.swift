@@ -73,6 +73,8 @@ final class CartButtonView: UIView {
         self.heightAnchor.constraint(equalToConstant: 54).isActive = true
         self.backgroundColor = UIColor(red: 1, green: 0.429, blue: 0.304, alpha: 1)
         self.layer.cornerRadius = 10
+        self.alpha = 0.6
+        self.isUserInteractionEnabled = false
         loadViews()
         setupConstraints()
         

@@ -7,8 +7,16 @@
 
 import UIKit
 
+protocol ColorAndCapacityListening: AnyObject {
+    
+    func setColorId(id: Int?)
+    func setCapacityId(id: Int?)
+    
+}
+
 final class ProductInfoShopView: UIView {
     
+    weak var delegate: ColorAndCapacityListening?
     
     lazy var imagesStackView: UIStackView = {
         let stackView = UIStackView()
@@ -256,6 +264,7 @@ extension ProductInfoShopView {
     }
     
     @objc private func colorDidTap(_ sender: ProductInfoShopColorButton) {
+        delegate?.setColorId(id: sender.id)
         checkImageViewXConstraints.forEach { $0.isActive = false }
         checkImageViewXConstraints[sender.id ?? 0].isActive = true
         colorsStackView.arrangedSubviews.forEach { $0.alpha = 0.6 }
@@ -263,6 +272,7 @@ extension ProductInfoShopView {
     }
     
     @objc private func capacityDidTap(_ sender: ProductInfoShopCapacityButton) {
+        delegate?.setCapacityId(id: sender.id)
         capacityButtons.forEach {
             $0.setTitleColor(UIColor(red: 0.554, green: 0.554, blue: 0.554, alpha: 1), for: .normal)
             $0.backgroundColor = .white

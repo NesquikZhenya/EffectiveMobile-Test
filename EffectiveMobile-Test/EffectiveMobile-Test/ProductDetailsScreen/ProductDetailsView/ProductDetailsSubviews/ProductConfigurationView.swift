@@ -9,6 +9,9 @@ import UIKit
 
 final class ProductConfigurationView: UIView {
 
+    private var colorId: Int?
+    private var capacityId: Int?
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
@@ -16,6 +19,14 @@ final class ProductConfigurationView: UIView {
         return label
     }()
 
+    lazy var favouriteButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(red: 0.004, green: 0, blue: 0.208, alpha: 1)
+        button.layer.cornerRadius = 10
+        button.addTarget(self, action: #selector(favouriteButtonDidTap), for: .touchUpInside)
+        return button
+    }()
+    
     private let favouriteBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 10
@@ -91,6 +102,7 @@ final class ProductConfigurationView: UIView {
         self.backgroundColor = .white
         loadViews()
         setupConstraints()
+        productInfoShopView.delegate = self
         cartButtonView.delegate = self
     }
     
@@ -107,8 +119,7 @@ extension ProductConfigurationView: ViewSetuping {
     func loadViews() {
         [
             titleLabel,
-            favouriteBackgroundView,
-            favouriteImageView,
+            favouriteButton,
             productRatingView,
             productInfoLabelsStackView,
             underlineView,
@@ -121,8 +132,7 @@ extension ProductConfigurationView: ViewSetuping {
     
     func setupConstraints() {
         configureTitleLabelConstraints()
-        configureFavouriteBackgroundViewConstraints()
-        configureFavouriteImageViewConstraints()
+        configureFavouriteButtonConstraints()
         configureProductRatingViewConstraints()
         configureProductInfoLabelsStackViewConstraints()
         configureUnderlineViewConstraints()
@@ -133,8 +143,7 @@ extension ProductConfigurationView: ViewSetuping {
         
         [
             titleLabel,
-            favouriteBackgroundView,
-            favouriteImageView,
+            favouriteButton,
             productRatingView,
             productInfoLabelsStackView,
             underlineView,
@@ -151,22 +160,15 @@ extension ProductConfigurationView: ViewSetuping {
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 38)
         ].forEach { $0.isActive = true }
     }
-
-    private func configureFavouriteBackgroundViewConstraints() {
-        [
-            favouriteBackgroundView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
-            favouriteBackgroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -38),
-            favouriteBackgroundView.heightAnchor.constraint(equalToConstant: 32),
-            favouriteBackgroundView.widthAnchor.constraint(equalToConstant: 38)
-        ].forEach { $0.isActive = true }
-    }
-
-    private func configureFavouriteImageViewConstraints() {
-        [
-            favouriteImageView.centerYAnchor.constraint(equalTo: favouriteBackgroundView.centerYAnchor),
-            favouriteImageView.centerXAnchor.constraint(equalTo: favouriteBackgroundView.centerXAnchor),
-        ].forEach { $0.isActive = true }
-    }
+    
+        private func configureFavouriteButtonConstraints() {
+            [
+                favouriteButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+                favouriteButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -38),
+                favouriteButton.heightAnchor.constraint(equalToConstant: 32),
+                favouriteButton.widthAnchor.constraint(equalToConstant: 38)
+            ].forEach { $0.isActive = true }
+        }
 
     private func configureProductRatingViewConstraints() {
         [
@@ -231,7 +233,7 @@ extension ProductConfigurationView {
     
     func initializeView(detailedProduct: DetailedProduct) {
         titleLabel.text = detailedProduct.title
-        favouriteImageView.image = heartImage(isFavourite: detailedProduct.isFavorites)
+        favouriteButton.setImage(heartImage(isFavourite: detailedProduct.isFavorites), for: .normal)
         productRatingView.initializeView(rating: detailedProduct.rating)
         productInfoShopView.initializeView(detailedProduct: detailedProduct)
         cartButtonView.initializeView(price: detailedProduct.price)
@@ -248,14 +250,41 @@ extension ProductConfigurationView {
 
 extension ProductConfigurationView {
     
+    @objc private func favouriteButtonDidTap() {
+        if favouriteButton.image(for: .normal) == UIImage(named: "favourite") {
+            favouriteButton.setImage(UIImage(named: "notFavourite"), for: .normal)
+        } else {
+            favouriteButton.setImage(UIImage(named: "favourite"), for: .normal)
+        }
+    }
+    
     @objc private func infoDidTap() {
         print("test")
     }
     
-    
     @objc private func addButtonDidTap() {
         cartButtonView.firstAdded()
         cartButtonView.removeGestureRecognizer(cartGesture)
+    }
+    
+}
+
+extension ProductConfigurationView: ColorAndCapacityListening {
+    
+    func setColorId(id: Int?) {
+        self.colorId = id
+        if self.colorId != nil && self.capacityId != nil{
+            cartButtonView.alpha = 1
+            cartButtonView.isUserInteractionEnabled = true
+        }
+    }
+    
+    func setCapacityId(id: Int?) {
+        self.capacityId = id
+        if self.colorId != nil && self.capacityId != nil{
+            cartButtonView.alpha = 1
+            cartButtonView.isUserInteractionEnabled = true
+        }
     }
     
 }
@@ -267,3 +296,5 @@ extension ProductConfigurationView: FirstRemovedListening {
     }
     
 }
+
+
