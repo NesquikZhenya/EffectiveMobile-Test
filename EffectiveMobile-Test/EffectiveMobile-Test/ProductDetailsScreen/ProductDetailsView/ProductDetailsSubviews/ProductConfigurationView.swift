@@ -78,8 +78,11 @@ final class ProductConfigurationView: UIView {
         return view
     }()
     
-    private let cartButtonView: UIView = {
+    lazy var cartGesture = UITapGestureRecognizer(target: self, action: #selector(addButtonDidTap))
+
+    lazy var cartButtonView: CartButtonView = {
         let view = CartButtonView()
+        view.addGestureRecognizer(cartGesture)
         return view
     }()
     
@@ -88,6 +91,7 @@ final class ProductConfigurationView: UIView {
         self.backgroundColor = .white
         loadViews()
         setupConstraints()
+        cartButtonView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -143,7 +147,7 @@ extension ProductConfigurationView: ViewSetuping {
     
     private func configureTitleLabelConstraints() {
         [
-            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 28),
+            titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 38)
         ].forEach { $0.isActive = true }
     }
@@ -173,7 +177,7 @@ extension ProductConfigurationView: ViewSetuping {
 
     private func configureProductInfoLabelsStackViewConstraints() {
         [
-            productInfoLabelsStackView.topAnchor.constraint(equalTo: productRatingView.bottomAnchor, constant: 32),
+            productInfoLabelsStackView.topAnchor.constraint(equalTo: productRatingView.bottomAnchor, constant: 24),
             productInfoLabelsStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 32),
             productInfoLabelsStackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -32)
         ].forEach { $0.isActive = true }
@@ -212,6 +216,7 @@ extension ProductConfigurationView: ViewSetuping {
 
     private func configureCartButtonViewConstraints() {
         [
+            cartButtonView.topAnchor.constraint(equalTo: productInfoShopView.bottomAnchor, constant: 24),
             cartButtonView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
             cartButtonView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
             cartButtonView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -30)
@@ -229,6 +234,7 @@ extension ProductConfigurationView {
         favouriteImageView.image = heartImage(isFavourite: detailedProduct.isFavorites)
         productRatingView.initializeView(rating: detailedProduct.rating)
         productInfoShopView.initializeView(detailedProduct: detailedProduct)
+        cartButtonView.initializeView(price: detailedProduct.price)
     }
     
     private func heartImage(isFavourite: Bool) -> UIImage? {
@@ -244,6 +250,20 @@ extension ProductConfigurationView {
     
     @objc private func infoDidTap() {
         print("test")
+    }
+    
+    
+    @objc private func addButtonDidTap() {
+        cartButtonView.firstAdded()
+        cartButtonView.removeGestureRecognizer(cartGesture)
+    }
+    
+}
+
+extension ProductConfigurationView: FirstRemovedListening {
+    
+    func firstRemoved() {
+        cartButtonView.addGestureRecognizer(cartGesture)
     }
     
 }

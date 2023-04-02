@@ -66,14 +66,14 @@ extension ProductDetailsView: ViewSetuping {
             productImagesScrollView.topAnchor.constraint(equalTo: self.topAnchor, constant: 128),
             productImagesScrollView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             productImagesScrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            productImagesScrollView.heightAnchor.constraint(equalToConstant: 300)
+//            productImagesScrollView.heightAnchor.constraint(equalToConstant: 300)
 //            productImagesScrollView.heightAnchor.constraint(equalToConstant: (productImagesScrollView.frame.width * 0.8))
         ].forEach { $0.isActive = true }
     }
     
     private func configureProductConfigurationViewConstraints() {
         [
-            productConfigurationView.topAnchor.constraint(equalTo: productImagesScrollView.bottomAnchor, constant: 8),
+//            productConfigurationView.topAnchor.constraint(equalTo: productImagesScrollView.bottomAnchor, constant: 8),
             productConfigurationView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             productConfigurationView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             productConfigurationView.bottomAnchor.constraint(equalTo: self.bottomAnchor)

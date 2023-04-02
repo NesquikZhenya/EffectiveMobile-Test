@@ -2,20 +2,21 @@
 //  ProductInfoShopColorButton.swift
 //  EffectiveMobile-Test
 //
-//  Created by Евгений Михневич on 01.04.2023.
+//  Created by Евгений Михневич on 03.04.2023.
 //
 
 import UIKit
 
 class ProductInfoShopColorButton: UIButton {
 
-    private var id: Int?
-
+    var id: Int?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.layer.cornerRadius = 20
         self.heightAnchor.constraint(equalToConstant: 40).isActive = true
         self.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        self.layer.cornerRadius = 20
+        self.alpha = 0.6
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -24,12 +25,12 @@ class ProductInfoShopColorButton: UIButton {
 
 }
 
+
 extension ProductInfoShopColorButton {
     
-    func configureButton(id: Int, color: UIColor) {
+    func configureButton(id:Int, color: UIColor) {
         self.id = id
         self.backgroundColor = color
-        self.titleLabel?.font = UIFont(name: "MarkPro-Bold", size: 13)
     }
-    
+
 }
