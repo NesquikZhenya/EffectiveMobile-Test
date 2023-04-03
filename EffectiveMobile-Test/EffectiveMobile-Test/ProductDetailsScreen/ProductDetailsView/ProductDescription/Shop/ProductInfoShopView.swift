@@ -170,21 +170,21 @@ extension ProductInfoShopView: ViewSetuping {
 
     private func configureCameraLabelConstraints() {
         [
-            cameraLabel.topAnchor.constraint(equalTo: imagesStackView.bottomAnchor, constant: 8),
+            cameraLabel.centerYAnchor.constraint(equalTo: cpuLabel.centerYAnchor),
             cameraLabel.centerXAnchor.constraint(equalTo: imagesStackView.arrangedSubviews[1].centerXAnchor)
         ].forEach { $0.isActive = true }
     }
 
     private func configureRamLabelConstraints() {
         [
-            ramLabel.topAnchor.constraint(equalTo: imagesStackView.bottomAnchor, constant: 8),
+            ramLabel.centerYAnchor.constraint(equalTo: cpuLabel.centerYAnchor),
             ramLabel.centerXAnchor.constraint(equalTo: imagesStackView.arrangedSubviews[2].centerXAnchor)
         ].forEach { $0.isActive = true }
     }
 
     private func configureSdLabelConstraints() {
         [
-            sdLabel.topAnchor.constraint(equalTo: imagesStackView.bottomAnchor, constant: 8),
+            sdLabel.centerYAnchor.constraint(equalTo: cpuLabel.centerYAnchor),
             sdLabel.centerXAnchor.constraint(equalTo: imagesStackView.arrangedSubviews[3].centerXAnchor)
         ].forEach { $0.isActive = true }
     }

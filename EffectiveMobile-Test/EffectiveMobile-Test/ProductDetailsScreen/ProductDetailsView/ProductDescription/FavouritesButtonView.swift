@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavouritesButtonView: UIButton {
+final class FavouritesButtonView: UIButton {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
