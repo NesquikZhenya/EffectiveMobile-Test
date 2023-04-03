@@ -12,3 +12,13 @@ They will be stored in CoreData in order to pass them to other tabs (with saving
 Collection view, scroll view, etc. are used.
 Sometimes "crutches" are possible, because there is no backend.
 The application has not been completed.
+
+https://github.com/NesquikZhenya//EffectiveMobile-Test/blob/main/DEMO/1.png?raw=true
+https://github.com/NesquikZhenya//EffectiveMobile-Test/blob/main/DEMO/2.png?raw=true
+https://github.com/NesquikZhenya//EffectiveMobile-Test/blob/main/DEMO/3.png?raw=true
+https://github.com/NesquikZhenya//EffectiveMobile-Test/blob/main/DEMO/4.png?raw=true
+https://github.com/NesquikZhenya//EffectiveMobile-Test/blob/main/DEMO/5.png?raw=true
+https://github.com/NesquikZhenya//EffectiveMobile-Test/blob/main/DEMO/6.png?raw=true
+https://github.com/NesquikZhenya//EffectiveMobile-Test/blob/main/DEMO/7.png?raw=true
+https://github.com/NesquikZhenya//EffectiveMobile-Test/blob/main/DEMO/8.png?raw=true
+
