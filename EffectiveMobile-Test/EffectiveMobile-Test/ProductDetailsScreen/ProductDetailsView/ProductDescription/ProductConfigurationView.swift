@@ -368,7 +368,8 @@ extension ProductConfigurationView: UIScrollViewDelegate {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let translation = scrollView.panGestureRecognizer.translation(in: self).x
-        if translation < 0 {
+        if translation < -50 {
+//            print(translation)
             if scrollViewPosition < 2 {
                 scrollViewPosition += 1
                 self.underliveViewLeadingConstraints.forEach { $0.isActive = false }
@@ -376,7 +377,8 @@ extension ProductConfigurationView: UIScrollViewDelegate {
                 self.underliveViewLeadingConstraints[scrollViewPosition].isActive = true
                 self.underliveViewTrailingConstraints[scrollViewPosition].isActive = true
             }
-        } else {
+        } else if translation > 50 {
+//            print(translation)
             if scrollViewPosition > 0 {
                 scrollViewPosition -= 1
                 self.underliveViewLeadingConstraints.forEach { $0.isActive = false }
@@ -386,6 +388,7 @@ extension ProductConfigurationView: UIScrollViewDelegate {
             }
         }
     }
+
     
 }
 

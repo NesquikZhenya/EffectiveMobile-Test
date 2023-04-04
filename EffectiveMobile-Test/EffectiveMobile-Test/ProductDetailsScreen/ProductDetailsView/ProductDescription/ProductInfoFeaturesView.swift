@@ -9,12 +9,13 @@ import UIKit
 
 final class ProductInfoFeaturesView: UIView {
 
-    private let textView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont(name: "MarkPro-Medium", size: 16)
-        textView.textColor = UIColor(red: 1, green: 0.429, blue: 0.304, alpha: 1)
-        textView.text = "Here could be any type of Product Details Features. Right now this view exists just to show functionality of this chapter."
-        return textView
+    private let featuresLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "MarkPro-Medium", size: 16)
+        label.textColor = UIColor(red: 1, green: 0.429, blue: 0.304, alpha: 1)
+        label.numberOfLines = 0
+        label.text = "Here could be any type of Product Details Features. Right now this view exists just to show functionality of this chapter."
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -33,24 +34,24 @@ extension ProductInfoFeaturesView: ViewSetuping {
   
     func loadViews() {
         [
-            textView,
+            featuresLabel,
         ].forEach {self.addSubview($0)}
     }
     
     func setupConstraints() {
-        configureTextViewConstraints()
+        configureFeaturesLabelConstraints()
         
         [
-            textView,
+            featuresLabel,
         ].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
     }
     
-    private func configureTextViewConstraints() {
+    private func configureFeaturesLabelConstraints() {
         [
-            textView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            textView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            textView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            textView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            featuresLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            featuresLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
+            featuresLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
+            featuresLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ].forEach { $0.isActive = true }
     }
     

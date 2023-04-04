@@ -9,12 +9,13 @@ import UIKit
 
 final class ProductInfoDetailsView: UIView {
 
-    private let textView: UITextView = {
-        let textView = UITextView()
-        textView.font = UIFont(name: "MarkPro-Medium", size: 16)
-        textView.textColor = UIColor(red: 0.554, green: 0.554, blue: 0.554, alpha: 1)
-        textView.text = "Here could be any type of Product Details Description. Right now this view exists just to show functionality of this chapter."
-        return textView
+    private let detailsLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "MarkPro-Medium", size: 16)
+        label.textColor = UIColor(red: 0.554, green: 0.554, blue: 0.554, alpha: 1)
+        label.numberOfLines = 0
+        label.text = "Here could be any type of Product Details Description. Right now this view exists just to show functionality of this chapter."
+        return label
     }()
     
     override init(frame: CGRect) {
@@ -33,24 +34,24 @@ extension ProductInfoDetailsView: ViewSetuping {
   
     func loadViews() {
         [
-            textView,
+            detailsLabel,
         ].forEach {self.addSubview($0)}
     }
     
     func setupConstraints() {
-        configureTextViewConstraints()
+        configureDetailsLabelConstraints()
         
         [
-            textView,
+            detailsLabel,
         ].forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
     }
     
-    private func configureTextViewConstraints() {
+    private func configureDetailsLabelConstraints() {
         [
-            textView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            textView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            textView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            textView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            detailsLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
+            detailsLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 24),
+            detailsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -24),
+            detailsLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ].forEach { $0.isActive = true }
     }
     
